@@ -226,18 +226,29 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 .popt{display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:var(--rs);background:var(--s2);border:1px solid var(--b1);cursor:pointer;transition:all .2s;font-size:11px;font-weight:600;}
 .popt:hover,.popt.on{border-color:var(--purple);background:rgba(167,139,250,.07);}
 .psub{padding:0 12px 12px;}
-/* Despacho */
-.room-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin:0 11px 8px;padding:10px;background:linear-gradient(160deg,#0a1520,#060d15);border-radius:var(--r);border:1px solid var(--b2);min-height:150px;}
-.room-cell{aspect-ratio:1;background:rgba(255,255,255,.02);border-radius:4px;border:1px dashed rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:22px;transition:all .2s;}
-.room-cell:hover{background:rgba(0,230,118,.06);border-color:rgba(0,230,118,.18);}
-.room-cell.has-item{background:rgba(255,255,255,.04);border-style:solid;border-color:var(--b2);}
-.desp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:0 11px;}
-.di{background:var(--s1);border:1px solid var(--b1);border-radius:var(--rs);padding:8px;text-align:center;cursor:pointer;transition:all .2s;}
-.di:hover{border-color:var(--b2);}
-.di.owned{border-color:rgba(0,230,118,.25);}
-.di-ico{font-size:20px;margin-bottom:3px;}
-.di-name{font-size:8.5px;font-weight:700;line-height:1.2;}
-.di-price{font-size:8px;color:var(--gold);margin-top:2px;font-weight:700;}
+/* Trader Identity */
+.tid-banner{position:relative;margin:0 11px 0;border-radius:var(--r) var(--r) 0 0;height:110px;overflow:hidden;cursor:pointer;}
+.tid-banner-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:44px;letter-spacing:8px;opacity:.4;}
+.tid-banner-lbl{position:absolute;top:8px;right:10px;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:3px 9px;font-size:7.5px;font-weight:800;color:#fff;letter-spacing:.6px;}
+.tid-profile-card{margin:0 11px 8px;background:var(--s1);border:1px solid var(--b1);border-radius:0 0 var(--r) var(--r);border-top:none;padding:10px 13px 13px;}
+.tid-avatar-wrap{display:flex;align-items:flex-end;gap:10px;margin-top:-28px;margin-bottom:8px;}
+.tid-av{width:56px;height:56px;border-radius:50%;border:3px solid var(--bg);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;flex-shrink:0;position:relative;}
+.ipc{background:var(--s2);border:1px solid var(--b1);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:all .2s;position:relative;}
+.ipc:hover{border-color:var(--b2);transform:translateY(-1px);}
+.ipc.equipped{border-color:rgba(0,230,118,.4);background:rgba(0,230,118,.04);}
+.ipc.locked{opacity:.52;}
+.ipc-preview{height:60px;display:flex;align-items:center;justify-content:center;font-size:30px;position:relative;overflow:hidden;}
+.ipc-body{padding:7px 9px 10px;}
+.ipc-name{font-size:10px;font-weight:800;margin-bottom:2px;}
+.ipc-desc{font-size:7.5px;color:var(--t3);line-height:1.3;}
+.ipc-price{margin-top:5px;font-size:8.5px;font-weight:800;}
+.ipc-eq-badge{position:absolute;top:5px;right:5px;background:var(--green);color:#000;font-size:7px;font-weight:900;padding:2px 6px;border-radius:8px;}
+.skin-pack{margin:0 11px 8px;border-radius:var(--r);overflow:hidden;cursor:pointer;}
+.skin-pack-inner{padding:14px;display:flex;align-items:center;gap:12px;}
+.skin-pack-ico{font-size:34px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5));}
+.sp-rare{background:linear-gradient(135deg,rgba(167,139,250,.15),rgba(56,189,248,.08));border:1px solid rgba(167,139,250,.25);}
+.sp-epic{background:linear-gradient(135deg,rgba(255,184,0,.12),rgba(251,146,60,.08));border:1px solid rgba(255,184,0,.25);}
+.sp-legend{background:linear-gradient(135deg,rgba(255,61,87,.12),rgba(255,184,0,.07));border:1px solid rgba(255,61,87,.25);}
 /* Ajustes */
 .pw{margin:8px 11px;background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);padding:14px;}
 .pw-av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#00E676,#38BDF8);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;color:#000;border:2px solid var(--green);flex-shrink:0;}
@@ -291,6 +302,57 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 .eng-entry.dn{color:var(--red);}
 /* Search input override */
 #mkt-search::placeholder{color:var(--t3);}
+
+/* ─── LIGHT MODE ─── */
+body.light{background:#F0F2F5;}
+body.light .shell{background:#FAFBFC;border-color:#DDE2EA;}
+body.light .topbar{background:rgba(250,251,252,.97);border-color:#DDE2EA;}
+body.light .content{color:#1A2330;}
+body.light .bnav{background:rgba(250,251,252,.97);border-color:#DDE2EA;}
+body.light .card,body.light .cf,body.light .sc{background:#FAFBFC;}
+body.light .s1-bg,body.light [style*="background:var(--s1)"]{background:#FFFFFF!important;}
+body.light [style*="background:var(--s2)"]{background:#F0F2F5!important;}
+body.light [style*="color:var(--t1)"]{color:#1A2330!important;}
+body.light [style*="color:var(--t2)"]{color:#4A6070!important;}
+body.light [style*="color:var(--t3)"]{color:#7A9BB5!important;}
+body.light [style*="border:1px solid var(--b1)"]{border-color:#DDE2EA!important;}
+body.light .ni{color:#7A9BB5;}
+body.light .ni.on{color:var(--green);}
+body.light .logo{text-shadow:none;}
+body.light .shd{color:#7A9BB5;}
+body.light .pill{background:#F0F2F5;border-color:#DDE2EA;}
+body.light .toggle{background:#DDE2EA;}
+body.light .toggle.on{background:var(--green);}
+body.light .mbg .msh{background:#FAFBFC;}
+body.light .ar:hover{background:rgba(0,0,0,.03);}
+
+/* ─── ROOM OBJECTS ─── */
+.room-obj{padding:5px 3px;border-radius:7px;background:var(--s2);border:1px solid var(--b1);cursor:pointer;text-align:center;transition:all .2s;position:relative;}
+.room-obj:hover{border-color:var(--green);background:rgba(0,230,118,.05);}
+.room-obj.owned{border-color:rgba(0,230,118,.25);}
+.room-obj.locked{opacity:.5;}
+.ro-ico{font-size:18px;line-height:1.2;}
+.ro-n{font-size:7px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.3px;margin-top:2px;}
+.ro-price{font-size:7px;color:var(--gold);font-weight:700;}
+/* Room display items */
+.room-item{position:absolute;font-size:24px;cursor:pointer;transition:transform .2s;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5));}
+.room-item:hover{transform:scale(1.15);}
+
+/* ─── HEATMAP CELLS ─── */
+.hm-cell{border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;border:1px solid rgba(255,255,255,.06);transition:all .2s;position:relative;}
+.hm-cell:hover{transform:scale(1.03);z-index:2;box-shadow:0 0 12px rgba(0,0,0,.5);}
+.hm-cell .hm-em{font-size:18px;line-height:1;filter:drop-shadow(0 1px 3px rgba(0,0,0,.5));}
+.hm-cell .hm-name{font-size:7px;font-weight:800;text-align:center;padding:0 2px;line-height:1.2;text-shadow:0 1px 2px rgba(0,0,0,.8);}
+.hm-cell .hm-pct{font-family:'JetBrains Mono';font-size:9px;font-weight:800;text-shadow:0 1px 2px rgba(0,0,0,.8);}
+
+/* ─── ALERTS PANEL ─── */
+.alert-card{margin:0 11px 6px;border-radius:var(--rs);padding:10px 12px;display:flex;align-items:flex-start;gap:8px;border:1px solid;}
+.alert-warn{background:rgba(255,184,0,.07);border-color:rgba(255,184,0,.25);}
+.alert-danger{background:rgba(255,61,87,.07);border-color:rgba(255,61,87,.25);}
+.alert-good{background:rgba(0,230,118,.07);border-color:rgba(0,230,118,.2);}
+.alert-info{background:rgba(56,189,248,.07);border-color:rgba(56,189,248,.2);}
+/* Sell option selected state */
+.sell-opt-sel{border-color:var(--green)!important;background:rgba(0,230,118,.06)!important;}
 </style>
 </head>
 <body>
@@ -737,57 +799,357 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
   </div>
 </div>
 
-<!-- ══════════ DESPACHO ══════════ -->
+<!-- ══════════ TRADER IDENTITY ══════════ -->
 <div class="sc" id="sc-despacho">
-  <div style="padding:10px 13px 0;"><div style="font-family:'Bebas Neue';font-size:21px;letter-spacing:1px;">🖥️ Mi Despacho</div><div style="font-size:9.5px;color:var(--t2);">Personaliza tu oficina de inversiones</div></div>
-  <div style="margin:8px 11px 4px;font-size:9px;color:var(--t2);">Toca una celda para colocar o quitar un objeto. Compra objetos en la Tienda.</div>
-  <div class="room-grid" id="room-grid">
-    <div class="room-cell has-item" onclick="toggleCell(this)">💼</div>
-    <div class="room-cell has-item" onclick="toggleCell(this)">🪑</div>
-    <div class="room-cell has-item" onclick="toggleCell(this)">🖥️</div>
-    <div class="room-cell has-item" onclick="toggleCell(this)">🏆</div>
-    <div class="room-cell has-item" onclick="toggleCell(this)">📊</div>
-    <div class="room-cell" onclick="toggleCell(this)"></div>
-    <div class="room-cell" onclick="toggleCell(this)"></div>
-    <div class="room-cell has-item" onclick="toggleCell(this)">💡</div>
-    <div class="room-cell" onclick="toggleCell(this)"></div>
-    <div class="room-cell has-item" onclick="toggleCell(this)">🌍</div>
-    <div class="room-cell" onclick="toggleCell(this)"></div>
-    <div class="room-cell has-item" onclick="toggleCell(this)">🎽</div>
-    <div class="room-cell" onclick="toggleCell(this)"></div>
-    <div class="room-cell" onclick="toggleCell(this)"></div>
-    <div class="room-cell has-item" onclick="toggleCell(this)">⚽</div>
-    <div class="room-cell" onclick="toggleCell(this)"></div>
-  </div>
-  <!-- ADN del Inversor -->
-  <div class="card" style="background:var(--s2);">
-    <div style="font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--t3);margin-bottom:8px;">ADN del Inversor</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-      <div style="background:var(--s1);border:1px solid var(--b1);border-radius:var(--rs);padding:8px;"><div class="mono" style="font-size:11px;font-weight:700;color:var(--green)">Arriesgado</div><div style="font-size:8px;color:var(--t3);margin-top:1px">Estilo de trading</div></div>
-      <div style="background:var(--s1);border:1px solid var(--b1);border-radius:var(--rs);padding:8px;"><div class="mono" style="font-size:11px;font-weight:700;color:var(--blue)">F1 / MotoGP</div><div style="font-size:8px;color:var(--t3);margin-top:1px">Deporte favorito</div></div>
-      <div style="background:var(--s1);border:1px solid var(--b1);border-radius:var(--rs);padding:8px;"><div class="mono" style="font-size:11px;font-weight:700;color:var(--gold)">7 meses</div><div style="font-size:8px;color:var(--t3);margin-top:1px">En la app</div></div>
-      <div style="background:var(--s1);border:1px solid var(--b1);border-radius:var(--rs);padding:8px;"><div class="mono" style="font-size:11px;font-weight:700;color:var(--purple)">17 ops.</div><div style="font-size:8px;color:var(--t3);margin-top:1px">Este mes</div></div>
+  <div style="padding:10px 13px 6px;display:flex;align-items:center;justify-content:space-between;">
+    <div><div style="font-family:'Bebas Neue';font-size:21px;letter-spacing:1px;">👑 Trader Identity</div><div style="font-size:9px;color:var(--t2)">Tu imagen en toda la app</div></div>
+    <div style="display:flex;align-items:center;gap:5px;">
+      <div style="background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.3);border-radius:20px;padding:3px 10px;font-size:9px;font-weight:800;color:var(--purple);">Prestige Nv.4</div>
     </div>
   </div>
-  <div class="shd">🛒 Tienda del Despacho</div>
-  <div class="desp-grid">
-    <div class="di owned"><div class="di-ico">🪑</div><div class="di-name">Silla Gamer</div><div class="di-price">Tuyo ✓</div></div>
-    <div class="di owned"><div class="di-ico">🏆</div><div class="di-name">Vitrina</div><div class="di-price">Tuyo ✓</div></div>
-    <div class="di" onclick="showToast('Monitor Triple · 500 MT')"><div class="di-ico">🖥️</div><div class="di-name">Monitor Triple</div><div class="di-price">500 MT</div></div>
-    <div class="di" onclick="showToast('TV OLED · 2000 MT')"><div class="di-ico">📺</div><div class="di-name">TV 65" OLED</div><div class="di-price">2000 MT</div></div>
-    <div class="di" onclick="showToast('Vista Estadio · 1200 MT')"><div class="di-ico">🌆</div><div class="di-name">Vista Estadio</div><div class="di-price">1200 MT</div></div>
-    <div class="di" onclick="showToast('Luces RGB · 300 MT')"><div class="di-ico">💡</div><div class="di-name">Luces RGB</div><div class="di-price">300 MT</div></div>
-    <div class="di" onclick="showToast('Mini F1 · 400 MT')"><div class="di-ico">🏎️</div><div class="di-name">Mini F1</div><div class="di-price">400 MT</div></div>
-    <div class="di" onclick="showToast('Pelota firmada · 600 MT')"><div class="di-ico">⚽</div><div class="di-name">Pelota Firmada</div><div class="di-price">600 MT</div></div>
+
+  <!-- Live identity preview -->
+  <div class="shd">Vista Previa de tu Identidad</div>
+
+  <!-- Banner -->
+  <div class="tid-banner" id="tid-banner-el" onclick="showToast('✏️ Toca un banner abajo para equiparlo')" style="background:linear-gradient(135deg,#0D1520,#1A2D40);">
+    <div class="tid-banner-inner" id="tid-banner-text">🏦💹📊💸🏦💹📊</div>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(7,9,13,.8))"></div>
+    <div class="tid-banner-lbl" id="tid-banner-name">🏦 Wall Street</div>
   </div>
-  <div class="shd">🏅 Logros del Despacho</div>
-  <div class="cf" style="margin:0 11px 12px;">
-    <div class="ar"><div style="width:34px;height:34px;border-radius:8px;background:rgba(0,230,118,.1);display:flex;align-items:center;justify-content:center;font-size:17px;">🚀</div><div class="ai"><div class="an">Primera Inversión</div><div class="as2">Realiza tu primera compra</div></div><div class="tag tg">✓ +50 MT</div></div>
-    <div class="divL"></div>
-    <div class="ar"><div style="width:34px;height:34px;border-radius:8px;background:rgba(0,230,118,.1);display:flex;align-items:center;justify-content:center;font-size:17px;">📈</div><div class="ai"><div class="an">Racha Positiva x3</div><div class="as2">3 operaciones positivas seguidas</div></div><div class="tag tg">✓ +100 MT</div></div>
-    <div class="divL"></div>
-    <div class="ar"><div style="width:34px;height:34px;border-radius:8px;background:rgba(56,56,80,.3);filter:grayscale(1);display:flex;align-items:center;justify-content:center;font-size:17px;">🌍</div><div class="ai"><div class="an">Trader Global</div><div class="as2">Invierte en 5 deportes distintos</div></div><div class="tag smgh" style="font-size:8px;background:var(--s2);border:1px solid var(--b2);color:var(--t3);">🔒 +150 MT</div></div>
+
+  <!-- Profile card floating over banner -->
+  <div class="tid-profile-card">
+    <div class="tid-avatar-wrap">
+      <!-- Avatar with frame -->
+      <div class="tid-av" id="tid-av-el" style="background:linear-gradient(135deg,#00E676,#38BDF8);">
+        <span style="color:#000;font-weight:900;font-size:20px;">V</span>
+        <div id="tid-frame-el" style="position:absolute;inset:-4px;border-radius:50%;border:3px solid #FFB800;box-shadow:0 0 12px rgba(255,184,0,.5);"></div>
+      </div>
+      <!-- Name + title -->
+      <div style="flex:1;padding-bottom:4px;">
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+          <div style="font-family:'Bebas Neue';font-size:20px;letter-spacing:1px;">UVETRON</div>
+          <div id="tid-emblem-el" style="font-size:14px;" title="Emblema">🚀</div>
+        </div>
+        <div style="font-size:9px;color:var(--t2);font-weight:700;letter-spacing:.5px;" id="tid-title-el">🐺 WOLF OF THE MARKET</div>
+        <div style="margin-top:4px;display:flex;gap:4px;align-items:center;">
+          <span class="tag tb" style="font-size:7px;">💎 Diamante</span>
+          <span class="tag tg" style="font-size:7px;">RG +68.4%</span>
+        </div>
+      </div>
+    </div>
+    <!-- Stats strip -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--b1);padding-top:8px;gap:4px;">
+      <div style="text-align:center;"><div style="font-family:'Bebas Neue';font-size:17px;color:var(--green)">+68.4%</div><div style="font-size:7px;color:var(--t3);text-transform:uppercase">RG Hist.</div></div>
+      <div style="text-align:center;"><div style="font-family:'Bebas Neue';font-size:17px;color:var(--gold)">7m</div><div style="font-size:7px;color:var(--t3);text-transform:uppercase">Antigüedad</div></div>
+      <div style="text-align:center;"><div style="font-family:'Bebas Neue';font-size:17px;color:var(--blue)">9/7</div><div style="font-size:7px;color:var(--t3);text-transform:uppercase">W/L Duelos</div></div>
+      <div style="text-align:center;"><div style="font-family:'Bebas Neue';font-size:17px;color:var(--purple)">4</div><div style="font-size:7px;color:var(--t3);text-transform:uppercase">Prestige</div></div>
+    </div>
+    <!-- Como te ven en ranking -->
+    <div style="margin-top:8px;background:var(--s2);border:1px solid var(--b1);border-radius:var(--rs);padding:8px 10px;">
+      <div style="font-size:7.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--t3);margin-bottom:5px;">Así apareces en el Ranking</div>
+      <div style="display:flex;align-items:center;gap:8px;font-size:11px;">
+        <div style="font-family:'Bebas Neue';font-size:15px;color:var(--gold)">10</div>
+        <div id="tid-rank-frame" style="font-size:15px;">🥇</div>
+        <div style="font-weight:800;" id="tid-rank-name">UVETRON</div>
+        <div style="font-size:13px;" id="tid-rank-emblem">🚀</div>
+        <div style="flex:1;text-align:right;font-family:'JetBrains Mono';font-size:11px;color:var(--green);font-weight:700">+8.4%</div>
+      </div>
+    </div>
   </div>
+
+  <!-- SECTION: Banner -->
+  <div class="shd">🌌 Banners de Perfil</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0 11px 8px;">
+
+    <div class="ipc equipped" onclick="equipBanner(this,'🏦💹📊💸🏦💹📊','linear-gradient(135deg,#0D1520,#1A2D40)','🏦 Wall Street')">
+      <div class="ipc-preview" style="background:linear-gradient(135deg,#0D1520,#1A2D40);">
+        <div style="font-size:20px;opacity:.6;">🏦📊💹</div>
+      </div>
+      <div class="ipc-eq-badge">✓ EQUIPADO</div>
+      <div class="ipc-body">
+        <div class="ipc-name">🏦 Wall Street</div>
+        <div class="ipc-desc">Rascacielos financieros · Ambiente de trading profesional</div>
+        <div class="ipc-price" style="color:var(--green);">Tuyo ✓</div>
+      </div>
+    </div>
+
+    <div class="ipc locked" onclick="showToast('🌌 Cosmic Trader · 900 MT')">
+      <div class="ipc-preview" style="background:linear-gradient(135deg,#0a0520,#1a0a40);">
+        <div style="font-size:20px;opacity:.7;">🌌⭐🪐</div>
+      </div>
+      <div class="ipc-body">
+        <div class="ipc-name">🌌 Cosmic Trader</div>
+        <div class="ipc-desc">Fondo espacial · Estrellas y galaxias</div>
+        <div class="ipc-price" style="color:var(--gold);">900 MT</div>
+      </div>
+    </div>
+
+    <div class="ipc locked" onclick="showToast('🔥 High Risk · 1.200 MT')">
+      <div class="ipc-preview" style="background:linear-gradient(135deg,#200808,#401010);">
+        <div style="font-size:20px;opacity:.7;">🔥💀⚡</div>
+      </div>
+      <div class="ipc-body">
+        <div class="ipc-name">🔥 High Risk</div>
+        <div class="ipc-desc">Estética agresiva roja · Para los que lo arriesgan todo</div>
+        <div class="ipc-price" style="color:var(--gold);">1.200 MT</div>
+      </div>
+    </div>
+
+    <div class="ipc locked" onclick="showToast('⛩️ Data God · 1.500 MT')">
+      <div class="ipc-preview" style="background:linear-gradient(135deg,#050f20,#0a2040);">
+        <div style="font-size:20px;opacity:.7;">📡🖥️💾</div>
+      </div>
+      <div class="ipc-body">
+        <div class="ipc-name">⛩️ Data God</div>
+        <div class="ipc-desc">Matrix de datos · Pantalla de análisis verde</div>
+        <div class="ipc-price" style="color:var(--gold);">1.500 MT</div>
+      </div>
+    </div>
+
+    <div class="ipc locked" onclick="showToast('🏟️ Stadium · 800 MT')">
+      <div class="ipc-preview" style="background:linear-gradient(135deg,#0a1505,#1a2510);">
+        <div style="font-size:20px;opacity:.7;">🏟️⚽🏆</div>
+      </div>
+      <div class="ipc-body">
+        <div class="ipc-name">🏟️ Stadium</div>
+        <div class="ipc-desc">Estadio iluminado · Ambiente deportivo épico</div>
+        <div class="ipc-price" style="color:var(--gold);">800 MT</div>
+      </div>
+    </div>
+
+    <div class="ipc locked" onclick="showToast('🌊 Deep Blue · 1.000 MT')">
+      <div class="ipc-preview" style="background:linear-gradient(135deg,#020d1e,#051830);">
+        <div style="font-size:20px;opacity:.7;">🌊🐋💙</div>
+      </div>
+      <div class="ipc-body">
+        <div class="ipc-name">🌊 Deep Blue</div>
+        <div class="ipc-desc">Océano profundo · Calma antes de la tormenta</div>
+        <div class="ipc-price" style="color:var(--gold);">1.000 MT</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECTION: Marco -->
+  <div class="shd">💎 Marco de Perfil</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:0 11px 8px;">
+
+    <div class="ipc locked" style="border-radius:var(--rs);" onclick="equipFrame('#FFB800','0 0 14px rgba(255,184,0,.6)','🥇')">
+      <div class="ipc-preview" style="background:var(--s1);height:50px;">
+        <div style="width:36px;height:36px;border-radius:50%;border:3px solid #FFB800;box-shadow:0 0 10px rgba(255,184,0,.5);display:flex;align-items:center;justify-content:center;font-size:14px;">V</div>
+      </div>
+      <div class="ipc-body" style="padding:5px 6px 7px;">
+        <div class="ipc-name" style="font-size:9px;">🥇 Golden</div>
+        <div class="ipc-price" style="color:var(--gold);font-size:8px;">Tuyo ✓</div>
+      </div>
+    </div>
+
+    <div class="ipc equipped" style="border-radius:var(--rs);" onclick="showToast('✓ Ya equipado')">
+      <div class="ipc-preview" style="background:var(--s1);height:50px;">
+        <div style="width:36px;height:36px;border-radius:50%;border:3px solid #FFB800;box-shadow:0 0 12px rgba(255,184,0,.5);display:flex;align-items:center;justify-content:center;font-size:14px;background:linear-gradient(135deg,#00E676,#38BDF8);">V</div>
+      </div>
+      <div class="ipc-eq-badge" style="font-size:6px;">✓</div>
+      <div class="ipc-body" style="padding:5px 6px 7px;">
+        <div class="ipc-name" style="font-size:9px;">🥇 Gold Elite</div>
+        <div class="ipc-price" style="color:var(--green);font-size:8px;">Equipado</div>
+      </div>
+    </div>
+
+    <div class="ipc locked" style="border-radius:var(--rs);" onclick="equipFrame('#A78BFA','0 0 14px rgba(167,139,250,.6)','💜')">
+      <div class="ipc-preview" style="background:var(--s1);height:50px;">
+        <div style="width:36px;height:36px;border-radius:50%;border:3px solid #A78BFA;box-shadow:0 0 10px rgba(167,139,250,.5);display:flex;align-items:center;justify-content:center;font-size:14px;">V</div>
+      </div>
+      <div class="ipc-body" style="padding:5px 6px 7px;">
+        <div class="ipc-name" style="font-size:9px;">💜 Mystic</div>
+        <div class="ipc-price" style="color:var(--gold);font-size:8px;">600 MT</div>
+      </div>
+    </div>
+
+    <div class="ipc locked" style="border-radius:var(--rs);" onclick="equipFrame('#FF3D57','0 0 14px rgba(255,61,87,.6)','🔴')">
+      <div class="ipc-preview" style="background:var(--s1);height:50px;">
+        <div style="width:36px;height:36px;border-radius:50%;border:3px solid #FF3D57;box-shadow:0 0 10px rgba(255,61,87,.5);display:flex;align-items:center;justify-content:center;font-size:14px;">V</div>
+      </div>
+      <div class="ipc-body" style="padding:5px 6px 7px;">
+        <div class="ipc-name" style="font-size:9px;">🔴 Danger</div>
+        <div class="ipc-price" style="color:var(--gold);font-size:8px;">800 MT</div>
+      </div>
+    </div>
+
+    <div class="ipc locked" style="border-radius:var(--rs);" onclick="equipFrame('#38BDF8','0 0 14px rgba(56,189,248,.6)','💎')">
+      <div class="ipc-preview" style="background:var(--s1);height:50px;">
+        <div style="width:36px;height:36px;border-radius:50%;border:3px solid #38BDF8;box-shadow:0 0 10px rgba(56,189,248,.5);display:flex;align-items:center;justify-content:center;font-size:14px;">V</div>
+      </div>
+      <div class="ipc-body" style="padding:5px 6px 7px;">
+        <div class="ipc-name" style="font-size:9px;">💎 Diamond</div>
+        <div class="ipc-price" style="color:var(--gold);font-size:8px;">1.200 MT</div>
+      </div>
+    </div>
+
+    <div class="ipc locked" style="border-radius:var(--rs);" onclick="showToast('⚡ Lightning · Top 50 España')">
+      <div class="ipc-preview" style="background:var(--s1);height:50px;">
+        <div style="width:36px;height:36px;border-radius:50%;border:3px dashed #FB923C;box-shadow:0 0 10px rgba(251,146,60,.5);display:flex;align-items:center;justify-content:center;font-size:14px;">V</div>
+      </div>
+      <div class="ipc-body" style="padding:5px 6px 7px;">
+        <div class="ipc-name" style="font-size:9px;">⚡ Lightning</div>
+        <div class="ipc-price" style="color:var(--t3);font-size:7.5px;">🔒 Top 50 ESP</div>
+      </div>
+    </div>
+
+    <div class="ipc locked" style="border-radius:var(--rs);" onclick="showToast('🌟 Hall of Fame · Exclusivo')">
+      <div class="ipc-preview" style="background:var(--s1);height:50px;">
+        <div style="width:36px;height:36px;border-radius:50%;border:3px solid #FF9F0A;background:linear-gradient(135deg,rgba(255,159,10,.2),rgba(255,184,0,.1));box-shadow:0 0 12px rgba(255,159,10,.6);display:flex;align-items:center;justify-content:center;font-size:14px;">V</div>
+      </div>
+      <div class="ipc-body" style="padding:5px 6px 7px;">
+        <div class="ipc-name" style="font-size:9px;">🌟 Legend</div>
+        <div class="ipc-price" style="color:var(--t3);font-size:7.5px;">🔒 Hall of Fame</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECTION: Título -->
+  <div class="shd">🐺 Título del Trader</div>
+  <div style="margin:0 11px 8px;background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);overflow:hidden;">
+    <div class="rc-row" style="background:rgba(0,230,118,.04);border-left:3px solid var(--green);">
+      <div class="rc-ico" style="background:rgba(0,230,118,.1);border:1px solid rgba(0,230,118,.2);">🐺</div>
+      <div style="flex:1;"><div style="font-weight:700;font-size:11px;">Wolf of the Market</div><div style="font-size:8.5px;color:var(--t2)">Equipado · Instinto salvaje de trading</div></div>
+      <div class="tag tg" style="font-size:7.5px;">Activo</div>
+    </div>
+    <div class="rc-row" onclick="equipTitle('🚀 MOONSHOT HUNTER')">
+      <div class="rc-ico" style="background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.15);">🚀</div>
+      <div style="flex:1;"><div style="font-weight:700;font-size:11px;">Moonshot Hunter</div><div style="font-size:8.5px;color:var(--t2)">Tuyo · Buscas los +50% de rentabilidad</div></div>
+      <button class="sm smb" style="font-size:8px;padding:3px 7px;">Equipar</button>
+    </div>
+    <div class="rc-row" onclick="showToast('🧠 Data Analyst · 500 MT')">
+      <div class="rc-ico" style="background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.15);">🧠</div>
+      <div style="flex:1;"><div style="font-weight:700;font-size:11px;">Data Analyst</div><div style="font-size:8.5px;color:var(--t2)">Las cifras no mienten</div></div>
+      <div class="ipc-price" style="color:var(--gold);font-size:9px;">500 MT</div>
+    </div>
+    <div class="rc-row" onclick="showToast('💀 High Risk Gambler · 700 MT')">
+      <div class="rc-ico" style="background:rgba(255,61,87,.08);border:1px solid rgba(255,61,87,.15);">💀</div>
+      <div style="flex:1;"><div style="font-weight:700;font-size:11px;">High Risk Gambler</div><div style="font-size:8.5px;color:var(--t2)">Todo o nada · El riesgo es el juego</div></div>
+      <div class="ipc-price" style="color:var(--gold);font-size:9px;">700 MT</div>
+    </div>
+    <div class="rc-row" onclick="showToast('🔮 The Oracle · 1.000 MT')">
+      <div class="rc-ico" style="background:rgba(255,184,0,.08);border:1px solid rgba(255,184,0,.15);">🔮</div>
+      <div style="flex:1;"><div style="font-weight:700;font-size:11px;">The Oracle</div><div style="font-size:8.5px;color:var(--t2)">Predice el mercado con precisión</div></div>
+      <div class="ipc-price" style="color:var(--gold);font-size:9px;">1.000 MT</div>
+    </div>
+    <div class="rc-row" style="border-bottom:none;" onclick="showToast('👑 Wall Street King · Exclusivo temporada')">
+      <div class="rc-ico" style="background:rgba(255,159,10,.08);border:1px solid rgba(255,159,10,.15);">👑</div>
+      <div style="flex:1;"><div style="font-weight:700;font-size:11px;">Wall Street King</div><div style="font-size:8.5px;color:var(--t2)">Top 10 España en fin de temporada</div></div>
+      <div style="font-size:8px;color:var(--t3);font-weight:700">🔒 Temporada 1</div>
+    </div>
+  </div>
+
+  <!-- SECTION: Emblema -->
+  <div class="shd">🎯 Emblema de Estilo</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:0 11px 8px;">
+    <div class="ipc equipped" style="border-radius:var(--rs);" onclick="showToast('✓ Ya equipado')">
+      <div class="ipc-preview" style="background:rgba(56,189,248,.08);height:52px;font-size:26px;">🚀</div>
+      <div class="ipc-eq-badge" style="font-size:6px;">✓</div>
+      <div class="ipc-body" style="padding:5px 6px 7px;"><div class="ipc-name" style="font-size:9px;">Momentum</div><div class="ipc-price" style="color:var(--green);font-size:8px;">Tuyo ✓</div></div>
+    </div>
+    <div class="ipc locked" style="border-radius:var(--rs);" onclick="equipEmblem('🎯')">
+      <div class="ipc-preview" style="background:rgba(0,230,118,.06);height:52px;font-size:26px;">🎯</div>
+      <div class="ipc-body" style="padding:5px 6px 7px;"><div class="ipc-name" style="font-size:9px;">Sniper</div><div class="ipc-price" style="color:var(--gold);font-size:8px;">Tuyo ✓</div></div>
+    </div>
+    <div class="ipc locked" style="border-radius:var(--rs);" onclick="showToast('📉 Contrarian · 400 MT')">
+      <div class="ipc-preview" style="background:rgba(255,61,87,.06);height:52px;font-size:26px;">📉</div>
+      <div class="ipc-body" style="padding:5px 6px 7px;"><div class="ipc-name" style="font-size:9px;">Contrarian</div><div class="ipc-price" style="color:var(--gold);font-size:8px;">400 MT</div></div>
+    </div>
+    <div class="ipc locked" style="border-radius:var(--rs);" onclick="showToast('🧠 Strategist · 500 MT')">
+      <div class="ipc-preview" style="background:rgba(167,139,250,.06);height:52px;font-size:26px;">🧠</div>
+      <div class="ipc-body" style="padding:5px 6px 7px;"><div class="ipc-name" style="font-size:9px;">Strategist</div><div class="ipc-price" style="color:var(--gold);font-size:8px;">500 MT</div></div>
+    </div>
+    <div class="ipc locked" style="border-radius:var(--rs);" onclick="showToast('🐉 Dragon · 800 MT')">
+      <div class="ipc-preview" style="background:rgba(255,184,0,.06);height:52px;font-size:26px;">🐉</div>
+      <div class="ipc-body" style="padding:5px 6px 7px;"><div class="ipc-name" style="font-size:9px;">Dragon</div><div class="ipc-price" style="color:var(--gold);font-size:8px;">800 MT</div></div>
+    </div>
+    <div class="ipc locked" style="border-radius:var(--rs);" onclick="showToast('⚡ Lightning · 600 MT')">
+      <div class="ipc-preview" style="background:rgba(251,146,60,.06);height:52px;font-size:26px;">⚡</div>
+      <div class="ipc-body" style="padding:5px 6px 7px;"><div class="ipc-name" style="font-size:9px;">Lightning</div><div class="ipc-price" style="color:var(--gold);font-size:8px;">600 MT</div></div>
+    </div>
+    <div class="ipc locked" style="border-radius:var(--rs);" onclick="showToast('🔮 Oracle · Desbloquear 100 pronósticos')">
+      <div class="ipc-preview" style="background:rgba(45,212,191,.06);height:52px;font-size:26px;">🔮</div>
+      <div class="ipc-body" style="padding:5px 6px 7px;"><div class="ipc-name" style="font-size:9px;">Oracle</div><div class="ipc-price" style="color:var(--t3);font-size:7.5px;">🔒 100 pronós.</div></div>
+    </div>
+    <div class="ipc locked" style="border-radius:var(--rs);" onclick="showToast('🌟 Legend · Hall of Fame')">
+      <div class="ipc-preview" style="background:rgba(255,159,10,.06);height:52px;font-size:26px;">🌟</div>
+      <div class="ipc-body" style="padding:5px 6px 7px;"><div class="ipc-name" style="font-size:9px;">Legend</div><div class="ipc-price" style="color:var(--t3);font-size:7.5px;">🔒 Hall of Fame</div></div>
+    </div>
+  </div>
+
+  <!-- SECTION: Packs -->
+  <div class="shd">🎁 Identity Packs</div>
+
+  <div class="skin-pack sp-rare" onclick="showToast('🐺 Wolf Pack · 2.500 MT — Banner + Marco + Título + Emblema')">
+    <div class="skin-pack-inner">
+      <div class="skin-pack-ico">🐺</div>
+      <div style="flex:1;">
+        <div style="font-family:'Bebas Neue';font-size:18px;letter-spacing:1px;color:var(--purple)">Wolf Pack</div>
+        <div style="font-size:9px;color:var(--t2);margin-bottom:6px;">Banner Wall Street · Marco Negro Oro · Título "Wolf Trader" · Emblema Lobo</div>
+        <div style="display:flex;gap:4px;flex-wrap:wrap;">
+          <span class="tag tp" style="font-size:7px;">Banner</span>
+          <span class="tag tb" style="font-size:7px;">Marco</span>
+          <span class="tag tgo" style="font-size:7px;">Título</span>
+          <span class="tag tt" style="font-size:7px;">Emblema</span>
+        </div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;"><div style="font-family:'Bebas Neue';font-size:22px;color:var(--purple)">2500</div><div style="font-size:8px;color:var(--t3)">MT</div></div>
+    </div>
+  </div>
+
+  <div class="skin-pack sp-epic" onclick="showToast('👑 Wall Street King · 3.200 MT — El pack completo de poder')">
+    <div class="skin-pack-inner">
+      <div class="skin-pack-ico">👑</div>
+      <div style="flex:1;">
+        <div style="font-family:'Bebas Neue';font-size:18px;letter-spacing:1px;color:var(--gold)">Wall Street King</div>
+        <div style="font-size:9px;color:var(--t2);margin-bottom:6px;">Banner Wall Street · Marco Diamond · Título "Wall Street King" · Emblema Dragon</div>
+        <div style="display:flex;gap:4px;flex-wrap:wrap;">
+          <span style="background:rgba(255,184,0,.12);border:1px solid rgba(255,184,0,.25);color:var(--gold);padding:1px 6px;border-radius:8px;font-size:7px;font-weight:800;">ÉPICO</span>
+          <span class="tag tgo" style="font-size:7px;">−20% descuento</span>
+        </div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;"><div style="font-size:9px;color:var(--t3);text-decoration:line-through">4.000</div><div style="font-family:'Bebas Neue';font-size:22px;color:var(--gold)">3200</div><div style="font-size:8px;color:var(--t3)">MT</div></div>
+    </div>
+  </div>
+
+  <div class="skin-pack sp-legend" onclick="showToast('🔥 High Risk God · 2.800 MT — Para los que nunca tienen miedo')">
+    <div class="skin-pack-inner">
+      <div class="skin-pack-ico">🔥</div>
+      <div style="flex:1;">
+        <div style="font-family:'Bebas Neue';font-size:18px;letter-spacing:1px;color:var(--red)">High Risk God</div>
+        <div style="font-size:9px;color:var(--t2);margin-bottom:6px;">Banner High Risk · Marco Danger · Título "High Risk Gambler" · Emblema Lightning</div>
+        <div style="display:flex;gap:4px;flex-wrap:wrap;">
+          <span style="background:rgba(255,61,87,.12);border:1px solid rgba(255,61,87,.3);color:var(--red);padding:1px 6px;border-radius:8px;font-size:7px;font-weight:800;">LEGENDARIO</span>
+        </div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;"><div style="font-family:'Bebas Neue';font-size:22px;color:var(--red)">2800</div><div style="font-size:8px;color:var(--t3)">MT</div></div>
+    </div>
+  </div>
+
+  <!-- Exclusive seasonal skins -->
+  <div class="shd">🏆 Cosméticos Exclusivos</div>
+  <div style="margin:0 11px 12px;background:linear-gradient(135deg,rgba(255,159,10,.07),rgba(255,184,0,.04));border:1px solid rgba(255,159,10,.22);border-radius:var(--r);padding:13px;">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+      <div style="font-size:28px;">🏆</div>
+      <div>
+        <div style="font-family:'Bebas Neue';font-size:16px;color:var(--gold);letter-spacing:1px;">SEASON 1 LEGEND</div>
+        <div style="font-size:8.5px;color:var(--t2)">Sólo para los Top 3 de España al final de la Temporada 1</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px;">
+      <span class="tag tgo" style="font-size:7.5px;">Banner exclusivo</span>
+      <span class="tag tgo" style="font-size:7.5px;">Marco S1 Legend</span>
+      <span class="tag tgo" style="font-size:7.5px;">Título permanente</span>
+      <span class="tag tgo" style="font-size:7.5px;">Badge dorado</span>
+    </div>
+    <div style="font-size:9px;color:var(--t3);">⚠️ No transferible · Solo disponible en Temporada 1 · Actualmente #10 en España</div>
+  </div>
+
 </div>
 
 <!-- ══════════ SCOUT ══════════ -->
@@ -819,62 +1181,162 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 
 <!-- ══════════ REGLAS ══════════ -->
 <div class="sc" id="sc-reglas">
-  <div style="padding:10px 13px 6px;"><div style="font-family:'Bebas Neue';font-size:21px;letter-spacing:1px;">📋 Motor de Precios</div><div style="font-size:9.5px;color:var(--t2);">Cómo se mueven los valores en tiempo real</div></div>
+  <div style="padding:10px 13px 6px;"><div style="font-family:'Bebas Neue';font-size:21px;letter-spacing:1px;">📋 Motor de Precios</div><div style="font-size:9.5px;color:var(--t2);">Todas las reglas que mueven los valores</div></div>
   <div class="card" style="background:linear-gradient(135deg,rgba(0,230,118,.04),rgba(0,0,0,0));border-color:rgba(0,230,118,.15);">
-    <div style="font-size:11px;font-weight:700;margin-bottom:5px;">¿Cómo funciona el motor de precios?</div>
-    <div style="font-size:10px;color:var(--t2);line-height:1.5;">Cada evento deportivo real genera un cambio inmediato. El sistema pondera relevancia del evento, momento de temporada y demanda actual. Los precios se actualizan cada vez que ocurre un evento simulado.</div>
+    <div style="font-size:11px;font-weight:700;margin-bottom:5px;">⚙️ ¿Cómo funciona el motor?</div>
+    <div style="font-size:10px;color:var(--t2);line-height:1.5;">Cada evento deportivo real genera un cambio inmediato ponderado por su <strong style="color:var(--gold)">peso</strong> (frecuencia) y <strong style="color:var(--green)">relevancia</strong>. Además hay reglas globales (hype, inactividad, escándalos) que afectan a cualquier deportista independientemente del deporte. Los precios se actualizan en tiempo real.</div>
   </div>
-  <div class="shd">📈 Eventos que SUBEN el precio</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:0 11px 8px;">
-    <div style="background:var(--s1);border:1px solid rgba(0,230,118,.18);border-radius:var(--rs);padding:10px;">
-      <div style="font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:7px;color:var(--green)">⚽ Fútbol</div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>Gol marcado</span><span class="mono" style="color:var(--green);font-size:10px;font-weight:700">+8%</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>Asistencia</span><span class="mono" style="color:var(--green);font-size:10px;font-weight:700">+4%</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>Hat-trick</span><span class="mono" style="color:var(--green);font-size:10px;font-weight:700">+18%</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>Gol en final</span><span class="mono" style="color:var(--green);font-size:10px;font-weight:700">+25%</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;font-size:9.5px;"><span>Fichaje hype</span><span class="mono" style="color:var(--green);font-size:10px;font-weight:700">+20%</span></div>
+  <!-- Reglas globales -->
+  <div class="shd">🌍 Reglas Globales (cualquier deporte)</div>
+  <div style="margin:0 11px 8px;background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);overflow:hidden;">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 12px;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>🔥 Hype viral / Trending</span><span class="mono" style="color:var(--green);font-weight:700">+12%</span></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 12px;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>📱 Vídeo viral en redes</span><span class="mono" style="color:var(--green);font-weight:700">+7%</span></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 12px;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>🤝 Nuevo gran patrocinador</span><span class="mono" style="color:var(--green);font-weight:700">+9%</span></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 12px;border-bottom:1px solid var(--b1);font-size:9.5px;background:rgba(255,61,87,.03);"><span>😴 Inactividad 1 semana</span><span class="mono" style="color:var(--red);font-weight:700">−1.5%</span></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 12px;border-bottom:1px solid var(--b1);font-size:9.5px;background:rgba(255,61,87,.03);"><span>😴 Inactividad 2 semanas</span><span class="mono" style="color:var(--red);font-weight:700">−3%</span></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 12px;border-bottom:1px solid var(--b1);font-size:9.5px;background:rgba(255,61,87,.05);"><span>❄️ Inactividad 4 semanas</span><span class="mono" style="color:var(--red);font-weight:700">−6%</span></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 12px;border-bottom:1px solid var(--b1);font-size:9.5px;background:rgba(255,61,87,.03);"><span>🗞️ Escándalo mediático</span><span class="mono" style="color:var(--red);font-weight:700">−10%</span></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 12px;border-bottom:1px solid var(--b1);font-size:9.5px;background:rgba(255,61,87,.03);"><span>⚖️ Investigación disciplinaria</span><span class="mono" style="color:var(--red);font-weight:700">−8%</span></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 12px;font-size:9.5px;background:rgba(255,61,87,.03);"><span>💔 Conflicto con el club</span><span class="mono" style="color:var(--red);font-weight:700">−7%</span></div>
+  </div>
+  <!-- Futbol rules -->
+  <div class="shd">⚽ Fútbol</div>
+  <div style="margin:0 11px 8px;display:grid;grid-template-columns:1fr 1fr;gap:7px;">
+    <div style="background:var(--s1);border:1px solid rgba(0,230,118,.15);border-radius:var(--rs);padding:10px;">
+      <div style="font-size:8px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--green);margin-bottom:6px;">📈 Sube</div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>Gol</span><span class="mono" style="color:var(--green);font-weight:700">+8%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>Asistencia</span><span class="mono" style="color:var(--green);font-weight:700">+4%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>Hat-trick</span><span class="mono" style="color:var(--green);font-weight:700">+18%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>MVP partido</span><span class="mono" style="color:var(--green);font-weight:700">+6%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>Gol en final</span><span class="mono" style="color:var(--green);font-weight:700">+25%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;font-size:9px;"><span>Fichaje hype</span><span class="mono" style="color:var(--green);font-weight:700">+20%</span></div>
     </div>
-    <div style="background:var(--s1);border:1px solid rgba(0,230,118,.18);border-radius:var(--rs);padding:10px;">
-      <div style="font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:7px;color:var(--blue)">🏎️ F1 / 🏍️ MotoGP</div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>1ª posición</span><span class="mono" style="color:var(--green);font-size:10px;font-weight:700">+15%</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>Podio (2º-3º)</span><span class="mono" style="color:var(--green);font-size:10px;font-weight:700">+8%</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>Vuelta rápida</span><span class="mono" style="color:var(--green);font-size:10px;font-weight:700">+5%</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>Pole Position</span><span class="mono" style="color:var(--green);font-size:10px;font-weight:700">+6%</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;font-size:9.5px;"><span>Cambio equipo</span><span class="mono" style="color:var(--green);font-size:10px;font-weight:700">+12%</span></div>
-    </div>
-    <div style="background:var(--s1);border:1px solid rgba(0,230,118,.18);border-radius:var(--rs);padding:10px;">
-      <div style="font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:7px;color:var(--orange)">🥊 UFC</div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>KO / TKO</span><span class="mono" style="color:var(--green);font-size:10px;font-weight:700">+12%</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>Sumisión</span><span class="mono" style="color:var(--green);font-size:10px;font-weight:700">+10%</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>Cinturón</span><span class="mono" style="color:var(--green);font-size:10px;font-weight:700">+15%</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;font-size:9.5px;"><span>KO del año</span><span class="mono" style="color:var(--green);font-size:10px;font-weight:700">+20%</span></div>
-    </div>
-    <div style="background:var(--s1);border:1px solid rgba(0,230,118,.18);border-radius:var(--rs);padding:10px;">
-      <div style="font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:7px;color:var(--teal)">🎾 Tenis / 🏀 NBA</div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>Grand Slam</span><span class="mono" style="color:var(--green);font-size:10px;font-weight:700">+30%</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>Título torneo</span><span class="mono" style="color:var(--green);font-size:10px;font-weight:700">+20%</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>50+ puntos NBA</span><span class="mono" style="color:var(--green);font-size:10px;font-weight:700">+8%</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;font-size:9.5px;"><span>MVP temporada</span><span class="mono" style="color:var(--green);font-size:10px;font-weight:700">+15%</span></div>
+    <div style="background:var(--s1);border:1px solid rgba(255,61,87,.15);border-radius:var(--rs);padding:10px;">
+      <div style="font-size:8px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--red);margin-bottom:6px;">📉 Baja</div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>🟨 Tarj. amarilla</span><span class="mono" style="color:var(--red);font-weight:700">−3%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>⚠️ Apercibido</span><span class="mono" style="color:var(--red);font-weight:700">−5%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>🟥 Doble amarilla</span><span class="mono" style="color:var(--red);font-weight:700">−8%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>🟥 Tarjeta roja</span><span class="mono" style="color:var(--red);font-weight:700">−9%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>🏥 Lesión muscular</span><span class="mono" style="color:var(--red);font-weight:700">−12%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;font-size:9px;"><span>🏥 Lesión grave</span><span class="mono" style="color:var(--red);font-weight:700">−25%</span></div>
     </div>
   </div>
-  <div class="shd">📉 Eventos que BAJAN el precio</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:0 11px 8px;">
-    <div style="background:var(--s1);border:1px solid rgba(255,61,87,.18);border-radius:var(--rs);padding:10px;">
-      <div style="font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:7px;color:var(--red)">⚠️ General</div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>Lesión leve</span><span class="mono" style="color:var(--red);font-size:10px;font-weight:700">-10%</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>Lesión grave</span><span class="mono" style="color:var(--red);font-size:10px;font-weight:700">-25%</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>Suspensión</span><span class="mono" style="color:var(--red);font-size:10px;font-weight:700">-15%</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;font-size:9.5px;"><span>Inactividad 4s</span><span class="mono" style="color:var(--red);font-size:10px;font-weight:700">-1.5%/s</span></div>
+  <!-- Motor / regla inactividad explicada -->
+  <div class="card" style="background:rgba(255,184,0,.03);border-color:rgba(255,184,0,.2);">
+    <div style="font-size:10px;font-weight:700;margin-bottom:5px;">⏱️ Regla de Inactividad</div>
+    <div style="display:flex;gap:4px;margin-bottom:5px;">
+      <div style="flex:1;background:var(--s2);border-radius:var(--rx);padding:7px;text-align:center;"><div class="mono" style="font-size:12px;color:var(--gold);font-weight:700">−1.5%</div><div style="font-size:7.5px;color:var(--t3);margin-top:2px">1 semana</div></div>
+      <div style="flex:1;background:var(--s2);border-radius:var(--rx);padding:7px;text-align:center;"><div class="mono" style="font-size:12px;color:var(--orange);font-weight:700">−3%</div><div style="font-size:7.5px;color:var(--t3);margin-top:2px">2 semanas</div></div>
+      <div style="flex:1;background:var(--s2);border-radius:var(--rx);padding:7px;text-align:center;"><div class="mono" style="font-size:12px;color:var(--red);font-weight:700">−6%</div><div style="font-size:7.5px;color:var(--t3);margin-top:2px">4 semanas</div></div>
     </div>
-    <div style="background:var(--s1);border:1px solid rgba(255,61,87,.18);border-radius:var(--rs);padding:10px;">
-      <div style="font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:7px;color:var(--red)">📉 Resultados</div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>Derrota decisiva</span><span class="mono" style="color:var(--red);font-size:10px;font-weight:700">-5%</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>Derrota final</span><span class="mono" style="color:var(--red);font-size:10px;font-weight:700">-12%</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9.5px;"><span>KO recibido</span><span class="mono" style="color:var(--red);font-size:10px;font-weight:700">-10%</span></div>
-      <div style="display:flex;justify-content:space-between;padding:3px 0;font-size:9.5px;"><span>Expulsión</span><span class="mono" style="color:var(--red);font-size:10px;font-weight:700">-8%</span></div>
+    <div style="font-size:9px;color:var(--t3);">Si un deportista no genera noticias relevantes, su valor deprecia progresivamente. Los boosts pueden protegerlo temporalmente.</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:0 11px 8px;">
+    <div style="background:var(--s1);border:1px solid var(--b1);border-radius:var(--rs);padding:10px;">
+      <div style="font-size:8px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--blue);margin-bottom:6px;">🏎️ F1 / 🏍️ MotoGP</div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>Victoria</span><span class="mono" style="color:var(--green);font-weight:700">+15%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>Podio</span><span class="mono" style="color:var(--green);font-weight:700">+8%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>Campeón mundial</span><span class="mono" style="color:var(--green);font-weight:700">+35%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>Caída / Abandono</span><span class="mono" style="color:var(--red);font-weight:700">−8%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;font-size:9px;"><span>Lesión grave</span><span class="mono" style="color:var(--red);font-weight:700">−25%</span></div>
+    </div>
+    <div style="background:var(--s1);border:1px solid var(--b1);border-radius:var(--rs);padding:10px;">
+      <div style="font-size:8px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--teal);margin-bottom:6px;">🎾 Tenis / 🏀 NBA</div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>Grand Slam</span><span class="mono" style="color:var(--green);font-weight:700">+30%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>Título torneo</span><span class="mono" style="color:var(--green);font-weight:700">+20%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>50+ pts NBA</span><span class="mono" style="color:var(--green);font-weight:700">+10%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>🟨 Aviso/Conducta</span><span class="mono" style="color:var(--red);font-weight:700">−3%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;font-size:9px;"><span>💢 Expulsión torneo</span><span class="mono" style="color:var(--red);font-weight:700">−15%</span></div>
+    </div>
+    <div style="background:var(--s1);border:1px solid var(--b1);border-radius:var(--rs);padding:10px;">
+      <div style="font-size:8px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--orange);margin-bottom:6px;">🥊 UFC</div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>KO del año</span><span class="mono" style="color:var(--green);font-weight:700">+20%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>Cinturón</span><span class="mono" style="color:var(--green);font-weight:700">+15%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>Derrota por KO</span><span class="mono" style="color:var(--red);font-weight:700">−12%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;font-size:9px;"><span>⚖️ Antidopaje</span><span class="mono" style="color:var(--red);font-weight:700">−30%</span></div>
+    </div>
+    <div style="background:var(--s1);border:1px solid var(--b1);border-radius:var(--rs);padding:10px;">
+      <div style="font-size:8px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--purple);margin-bottom:6px;">🌟 Gran Tour / Otros</div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>Grand Tour cicl.</span><span class="mono" style="color:var(--green);font-weight:700">+30%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>Major golf</span><span class="mono" style="color:var(--green);font-weight:700">+25%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--b1);font-size:9px;"><span>Título WPT pádel</span><span class="mono" style="color:var(--green);font-weight:700">+12%</span></div>
+      <div style="display:flex;justify-content:space-between;padding:3px 0;font-size:9px;"><span>Positivo dopaje</span><span class="mono" style="color:var(--red);font-weight:700">−35%</span></div>
     </div>
   </div>
   <button class="btn-g" style="margin:4px 11px 12px;" onclick="nav('mercado')">← Volver al Mercado</button>
+</div>
+
+<!-- ══════════ ALERTAS ══════════ -->
+<div class="sc" id="sc-alertas">
+  <div style="padding:10px 13px 6px;display:flex;align-items:center;justify-content:space-between;">
+    <div>
+      <div style="font-family:'Bebas Neue';font-size:21px;letter-spacing:1px;">🔔 Alertas Inteligentes</div>
+      <div style="font-size:9px;color:var(--t2)">El sistema detecta patrones y te avisa</div>
+    </div>
+    <button class="sm smgh" onclick="alerts.length=0;updateAlertsScreen();showToast('🗑️ Alertas borradas')" style="font-size:9px;">Borrar todo</button>
+  </div>
+
+  <!-- How it works -->
+  <div style="margin:0 11px 8px;background:linear-gradient(135deg,rgba(255,184,0,.05),rgba(0,0,0,0));border:1px solid rgba(255,184,0,.2);border-radius:var(--r);padding:10px 12px;">
+    <div style="font-size:10px;font-weight:800;margin-bottom:5px;color:var(--gold);">⚙️ ¿Cómo funciona?</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
+      <div style="display:flex;align-items:center;gap:5px;font-size:8.5px;color:var(--t2)"><span style="font-size:13px">⚠️</span>3 eventos negativos seguidos</div>
+      <div style="display:flex;align-items:center;gap:5px;font-size:8.5px;color:var(--t2)"><span style="font-size:13px">🚨</span>5 caídas consecutivas</div>
+      <div style="display:flex;align-items:center;gap:5px;font-size:8.5px;color:var(--t2)"><span style="font-size:13px">🔥</span>Racha positiva de 4+ eventos</div>
+      <div style="display:flex;align-items:center;gap:5px;font-size:8.5px;color:var(--t2)"><span style="font-size:13px">💥</span>Movimiento &gt;15% en un evento</div>
+      <div style="display:flex;align-items:center;gap:5px;font-size:8.5px;color:var(--t2)"><span style="font-size:13px">💼</span>Caída grave en tu portfolio</div>
+      <div style="display:flex;align-items:center;gap:5px;font-size:8.5px;color:var(--t2)"><span style="font-size:13px">🔔</span>Eventos &gt;25% (Grand Slam, etc.)</div>
+    </div>
+  </div>
+
+  <!-- Filter row -->
+  <div style="display:flex;gap:5px;padding:0 11px 8px;overflow-x:auto;">
+    <button class="pill on" id="al-f-all" onclick="filterAlerts('all',this)" style="white-space:nowrap;font-size:9px;">🔔 Todas</button>
+    <button class="pill" id="al-f-danger" onclick="filterAlerts('danger',this)" style="white-space:nowrap;font-size:9px;">🚨 Urgente</button>
+    <button class="pill" id="al-f-good" onclick="filterAlerts('good',this)" style="white-space:nowrap;font-size:9px;">🔥 Oportunidad</button>
+    <button class="pill" id="al-f-warn" onclick="filterAlerts('warn',this)" style="white-space:nowrap;font-size:9px;">⚠️ Aviso</button>
+    <button class="pill" id="al-f-port" onclick="filterAlerts('port',this)" style="white-space:nowrap;font-size:9px;">💼 Portfolio</button>
+  </div>
+
+  <!-- Alerts list -->
+  <div id="alerts-list" style="padding:0 0 12px;">
+    <div style="padding:32px 20px;text-align:center;color:var(--t3)">
+      <div style="font-size:32px;margin-bottom:10px">🔔</div>
+      <div style="font-size:12px;font-weight:800;margin-bottom:4px">Sin alertas todavía</div>
+      <div style="font-size:9.5px;line-height:1.5">Las alertas aparecerán aquí en tiempo real<br>cuando el motor detecte patrones importantes</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ MAPA DE CALOR ══════════ -->
+<div class="sc" id="sc-heatmap">
+  <div style="padding:10px 13px 6px;display:flex;align-items:center;justify-content:space-between;">
+    <div><div style="font-family:'Bebas Neue';font-size:21px;letter-spacing:1px;">🗺️ Mapa de Calor</div><div style="font-size:9px;color:var(--t2)">Tamaño = capitalización · Color = RG%</div></div>
+    <div style="display:flex;gap:5px;">
+      <button class="sm smgh" id="hm-sport-btn" onclick="cycleHmSport()" style="font-size:9px;">🌍 Todos</button>
+      <button class="sm smgh" onclick="buildHeatmap()" style="font-size:9px;">↺</button>
+    </div>
+  </div>
+  <!-- Legend -->
+  <div style="display:flex;align-items:center;gap:6px;padding:0 11px 6px;flex-wrap:wrap;">
+    <div style="font-size:8px;color:var(--t3);font-weight:700;text-transform:uppercase;letter-spacing:.8px;">Leyenda:</div>
+    <div style="display:flex;align-items:center;gap:3px;font-size:8px;"><div style="width:10px;height:10px;border-radius:2px;background:#00E676;opacity:.9"></div><span style="color:var(--t2)">&gt;+10%</span></div>
+    <div style="display:flex;align-items:center;gap:3px;font-size:8px;"><div style="width:10px;height:10px;border-radius:2px;background:#00C85A;opacity:.6"></div><span style="color:var(--t2)">+1–10%</span></div>
+    <div style="display:flex;align-items:center;gap:3px;font-size:8px;"><div style="width:10px;height:10px;border-radius:2px;background:#3D5570;opacity:.8"></div><span style="color:var(--t2)">Neutro</span></div>
+    <div style="display:flex;align-items:center;gap:3px;font-size:8px;"><div style="width:10px;height:10px;border-radius:2px;background:#FF3D57;opacity:.5"></div><span style="color:var(--t2)">−1–10%</span></div>
+    <div style="display:flex;align-items:center;gap:3px;font-size:8px;"><div style="width:10px;height:10px;border-radius:2px;background:#FF3D57;opacity:.9"></div><span style="color:var(--t2)">&lt;−10%</span></div>
+  </div>
+  <!-- Treemap container -->
+  <div id="heatmap-container" style="margin:0 11px 8px;border:1px solid var(--b1);border-radius:var(--r);overflow:hidden;min-height:260px;position:relative;background:var(--s1);"></div>
+  <!-- Stats bar -->
+  <div style="margin:0 11px 8px;display:grid;grid-template-columns:repeat(3,1fr);background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);overflow:hidden;">
+    <div style="padding:8px 6px;text-align:center;border-right:1px solid var(--b1)"><div style="font-family:'Bebas Neue';font-size:18px;color:var(--green)" id="hm-gainers">—</div><div style="font-size:7.5px;color:var(--t3);text-transform:uppercase">Ganadores</div></div>
+    <div style="padding:8px 6px;text-align:center;border-right:1px solid var(--b1)"><div style="font-family:'Bebas Neue';font-size:18px;color:var(--red)" id="hm-losers">—</div><div style="font-size:7.5px;color:var(--t3);text-transform:uppercase">Perdedores</div></div>
+    <div style="padding:8px 6px;text-align:center"><div style="font-family:'Bebas Neue';font-size:18px;color:var(--gold)" id="hm-top-ath">—</div><div style="font-size:7.5px;color:var(--t3);text-transform:uppercase">Top RG%</div></div>
+  </div>
+  <!-- Sport breakdown -->
+  <div class="shd">📊 Por Deporte</div>
+  <div id="hm-sport-bars" style="margin:0 11px 12px;display:flex;flex-direction:column;gap:5px;"></div>
 </div>
 
 <!-- ══════════ TIENDA ══════════ -->
@@ -916,7 +1378,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
     </div>
   </div>
   <div style="display:flex;gap:6px;padding:0 11px 6px;">
-    <button class="btn-g" style="flex:1;padding:9px;font-size:11px;" onclick="nav('despacho')">🖥️ Mi Despacho</button>
+    <button class="btn-g" style="flex:1;padding:9px;font-size:11px;" onclick="nav('despacho')">👑 Mi Identidad</button>
     <button class="btn-gh" style="flex:1;padding:9px;font-size:11px;" onclick="showToast('Perfil copiado al portapapeles')">🔗 Compartir</button>
   </div>
   <div class="ss-title">Cuenta</div>
@@ -937,7 +1399,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
   </div>
   <div class="ss-title">Preferencias</div>
   <div style="margin:0 11px 8px;background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);overflow:hidden;">
-    <div class="srow"><div class="sl-l"><div class="sico" style="background:rgba(40,40,60,.5)">🌙</div><div><div class="slbl">Tema oscuro</div><div class="ssub">Siempre activo</div></div></div><div class="toggle on"></div></div>
+    <div class="srow"><div class="sl-l"><div class="sico" style="background:rgba(40,40,60,.5)">🌙</div><div><div class="slbl">Tema oscuro</div><div class="ssub" id="theme-lbl">Activo</div></div></div><div class="toggle on" id="theme-toggle" onclick="toggleTheme(this)"></div></div>
     <div class="srow"><div class="sl-l"><div class="sico" style="background:rgba(0,230,118,.09)">📊</div><div><div class="slbl">Mostrar MV en millones</div></div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
     <div class="srow"><div class="sl-l"><div class="sico" style="background:rgba(56,189,248,.09)">🔇</div><div><div class="slbl">Sonidos y vibraciones</div></div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
   </div>
@@ -1032,9 +1494,11 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
     <div onclick="nav('misiones');closeMore()" style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 4px;background:var(--s2);border:1px solid var(--b1);border-radius:9px;cursor:pointer;font-size:7.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--t2);"><span style="font-size:19px">🎯</span>Misiones</div>
     <div onclick="nav('calendario');closeMore()" style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 4px;background:var(--s2);border:1px solid var(--b1);border-radius:9px;cursor:pointer;font-size:7.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--t2);"><span style="font-size:19px">📅</span>Calendario</div>
     <div onclick="nav('pronostikator');closeMore()" style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 4px;background:var(--s2);border:1px solid var(--b1);border-radius:9px;cursor:pointer;font-size:7.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--t2);"><span style="font-size:19px">🔮</span>Pronós.</div>
-    <div onclick="nav('despacho');closeMore()" style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 4px;background:var(--s2);border:1px solid var(--b1);border-radius:9px;cursor:pointer;font-size:7.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--t2);"><span style="font-size:19px">🖥️</span>Despacho</div>
+    <div onclick="nav('despacho');closeMore()" style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 4px;background:var(--s2);border:1px solid var(--b1);border-radius:9px;cursor:pointer;font-size:7.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--t2);"><span style="font-size:19px">👑</span>Identidad</div>
     <div onclick="nav('ajustes');closeMore()" style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 4px;background:var(--s2);border:1px solid var(--b1);border-radius:9px;cursor:pointer;font-size:7.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--t2);"><span style="font-size:19px">⚙️</span>Ajustes</div>
     <div onclick="nav('scout');closeMore()" style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 4px;background:var(--s2);border:1px solid var(--b1);border-radius:9px;cursor:pointer;font-size:7.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--t2);"><span style="font-size:19px">🔭</span>Scout</div>
+    <div onclick="nav('heatmap');closeMore()" style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 4px;background:var(--s2);border:1px solid rgba(45,212,191,.3);border-radius:9px;cursor:pointer;font-size:7.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--teal);"><span style="font-size:19px">🗺️</span>Calor</div>
+    <div onclick="nav('alertas');closeMore()" style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 4px;background:var(--s2);border:1px solid rgba(255,184,0,.3);border-radius:9px;cursor:pointer;font-size:7.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--gold);position:relative;"><span id="alert-badge" style="display:none;position:absolute;top:4px;right:4px;width:8px;height:8px;background:var(--red);border-radius:50%;border:1px solid var(--bg);"></span><span style="font-size:19px">🔔</span>Alertas</div>
     <div onclick="nav('tienda');closeMore()" style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 4px;background:var(--s2);border:1px solid var(--b1);border-radius:9px;cursor:pointer;font-size:7.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--gold);"><span style="font-size:19px">🛍️</span>Tienda</div>
   </div>
 </div>
@@ -1098,6 +1562,70 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
   </div>
 </div>
 
+<!-- SELL MODAL -->
+<div class="mbg" id="modal-sell" onclick="if(event.target===this)closeSellModal()">
+  <div class="msh">
+    <div class="mh"></div>
+    <div style="text-align:center;margin-bottom:12px;">
+      <div id="sell-em" style="font-size:32px;margin-bottom:4px;"></div>
+      <div style="font-family:'Bebas Neue';font-size:20px;" id="sell-name"></div>
+      <div style="font-size:9.5px;color:var(--t2);" id="sell-meta"></div>
+    </div>
+    <!-- Current value summary -->
+    <div style="background:var(--s2);border:1px solid var(--b1);border-radius:var(--rs);padding:10px 12px;margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:4px;font-size:10px;"><span style="color:var(--t2)">Precio de compra:</span><span class="mono" id="sell-buy-price" style="font-weight:700"></span></div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:4px;font-size:10px;"><span style="color:var(--t2)">Valor actual:</span><span class="mono" id="sell-cur-price" style="font-weight:700;color:var(--green)"></span></div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;padding-top:6px;border-top:1px solid var(--b1);"><span style="font-weight:700">Rentabilidad bruta:</span><span class="mono" id="sell-rg" style="font-weight:800;font-size:13px;"></span></div>
+    </div>
+    <!-- Option A: Mercado Principal -->
+    <div id="sell-opt-a" style="background:var(--s1);border:2px solid rgba(0,230,118,.3);border-radius:var(--r);padding:12px;margin-bottom:8px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;" onclick="selectSellOpt('a')">
+      <div style="position:absolute;top:0;right:0;background:var(--green);color:#000;font-size:7.5px;font-weight:800;padding:3px 8px;border-radius:0 0 0 8px;">RECOMENDADO</div>
+      <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px;">
+        <div style="width:38px;height:38px;border-radius:9px;background:rgba(0,230,118,.1);border:1px solid rgba(0,230,118,.25);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🏦</div>
+        <div><div style="font-weight:800;font-size:12px;">Mercado Principal</div><div style="font-size:9px;color:var(--t2)">Venta oficial · Sin comisión</div></div>
+      </div>
+      <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:7px;">
+        <span class="tag tg">Sin penalización</span>
+        <span class="tag tb">Precio completo</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:5px;background:rgba(0,230,118,.06);border-radius:var(--rx);padding:7px 9px;">
+        <span style="font-size:13px;">⏱️</span>
+        <div><div style="font-size:10px;font-weight:700;">Liquidación en 2–3 días</div><div style="font-size:8.5px;color:var(--t2)">El dinero llega tras el período de retención estándar</div></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">
+        <span style="font-size:10px;color:var(--t2)">Recibirás:</span>
+        <span class="mono" id="sell-a-amt" style="font-size:14px;font-weight:800;color:var(--green)"></span>
+      </div>
+    </div>
+    <!-- Option B: Mercado Secundario -->
+    <div id="sell-opt-b" style="background:var(--s1);border:2px solid rgba(255,184,0,.2);border-radius:var(--r);padding:12px;margin-bottom:12px;cursor:pointer;transition:all .2s;" onclick="selectSellOpt('b')">
+      <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px;">
+        <div style="width:38px;height:38px;border-radius:9px;background:rgba(255,184,0,.1);border:1px solid rgba(255,184,0,.25);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">⚡</div>
+        <div><div style="font-weight:800;font-size:12px;">Mercado Secundario</div><div style="font-size:9px;color:var(--t2)">P2P · Liquidez inmediata</div></div>
+      </div>
+      <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:7px;">
+        <span class="tag tr">−5% comisión</span>
+        <span class="tag tgo">Inmediato</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:5px;background:rgba(255,184,0,.06);border-radius:var(--rx);padding:7px 9px;">
+        <span style="font-size:13px;">💸</span>
+        <div><div style="font-size:10px;font-weight:700;">Recibes ahora mismo</div><div style="font-size:8.5px;color:var(--t2)">Se cobra un 5% de penalización por liquidez inmediata</div></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">
+        <span style="font-size:10px;color:var(--t2)">Recibirás:</span>
+        <span class="mono" id="sell-b-amt" style="font-size:14px;font-weight:800;color:var(--gold)"></span>
+      </div>
+    </div>
+    <!-- Confirm button -->
+    <div style="display:none;" id="sell-confirm-wrap">
+      <div id="sell-confirm-banner" style="background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.2);border-radius:var(--rs);padding:9px 12px;margin-bottom:8px;font-size:10.5px;font-weight:700;text-align:center;"></div>
+      <button class="btn-g" id="sell-confirm-btn" onclick="executeSell()">✅ Confirmar Venta</button>
+      <button class="btn-gh" style="margin-top:6px;" onclick="closeSellModal()">Cancelar</button>
+    </div>
+    <div id="sell-choose-msg" style="font-size:9.5px;color:var(--t3);text-align:center;padding:4px;">👆 Elige una opción para continuar</div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -1135,79 +1663,137 @@ const portfolio = {
   topuria:{buyPrice:2000000,units:0.5},
   alcaraz:{buyPrice:900000,units:0.94},
 };
+// ─── REGLA GLOBAL: Inactividad, Hype, Escándalos ───
+// Estas reglas se aplican sobre cualquier deporte como modificadores extra
+const GLOBAL_RULES = [
+  {label:'🔥 HYPE VIRAL',desc:'Trending en redes · Foco mediático extremo',pct:12,up:true,weight:4},
+  {label:'📱 VIRAL',desc:'Vídeo viral en redes sociales',pct:7,up:true,weight:5},
+  {label:'🤝 SPONSOR DEAL',desc:'Nuevo gran patrocinador anunciado',pct:9,up:true,weight:3},
+  {label:'🎖️ PREMIO HONORÍFICO',desc:'Reconocimiento especial de la federación',pct:5,up:true,weight:4},
+  {label:'😴 INACTIVIDAD 1S',desc:'1 semana sin noticias · Leve depreciación',pct:-1.5,up:false,weight:6},
+  {label:'😴 INACTIVIDAD 2S',desc:'2 semanas sin noticias · Deprecia más',pct:-3,up:false,weight:4},
+  {label:'❄️ INACTIVIDAD 4S',desc:'Un mes sin actividad · Deprecia significativamente',pct:-6,up:false,weight:2},
+  {label:'🗞️ ESCÁNDALO',desc:'Noticias negativas fuera del campo',pct:-10,up:false,weight:3},
+  {label:'⚖️ INVESTIGACIÓN',desc:'Abierta investigación disciplinaria',pct:-8,up:false,weight:2},
+  {label:'💔 CONFLICTO CLUB',desc:'Enfrentamiento público con la directiva',pct:-7,up:false,weight:3},
+];
+
 const EVENT_TYPES = {
   futbol:[
-    {label:'⚽ GOL',desc:'¡Marca un gol!',pct:8,up:true},
-    {label:'🎯 ASISTENCIA',desc:'Da una asistencia de gol',pct:4,up:true},
-    {label:'🏆 VICTORIA',desc:'Su equipo gana el partido',pct:5,up:true},
-    {label:'🎩 HAT-TRICK',desc:'¡Triplete histórico!',pct:18,up:true},
-    {label:'⭐ MVP PARTIDO',desc:'Mejor jugador del encuentro',pct:6,up:true},
-    {label:'🏆 GOL EN FINAL',desc:'Decide una final con un gol',pct:25,up:true},
-    {label:'🔄 FICHAJE HYPE',desc:'Traspaso millonario confirmado',pct:20,up:true},
-    {label:'🏥 LESIÓN',desc:'Se lesiona durante el partido',pct:-15,up:false},
-    {label:'🟥 EXPULSIÓN',desc:'Expulsado por doble amarilla',pct:-8,up:false},
-    {label:'😤 DERROTA',desc:'Su equipo pierde decisivamente',pct:-5,up:false},
+    // ── Positivos ──
+    {label:'⚽ GOL',desc:'¡Marca un gol en el partido!',pct:8,up:true,weight:10},
+    {label:'🎯 ASISTENCIA',desc:'Da una asistencia de gol',pct:4,up:true,weight:10},
+    {label:'🏆 VICTORIA',desc:'Su equipo gana el partido',pct:5,up:true,weight:8},
+    {label:'🎩 HAT-TRICK',desc:'¡Triplete histórico!',pct:18,up:true,weight:3},
+    {label:'⭐ MVP PARTIDO',desc:'Mejor jugador del encuentro',pct:6,up:true,weight:7},
+    {label:'🏆 GOL EN FINAL',desc:'Decide una final con un gol',pct:25,up:true,weight:2},
+    {label:'🔄 FICHAJE HYPE',desc:'Traspaso millonario confirmado',pct:20,up:true,weight:3},
+    {label:'👑 CAPITÁN',desc:'Nombrado capitán de la selección',pct:8,up:true,weight:2},
+    {label:'🥇 PICHICHI',desc:'Lidera la tabla de goleadores',pct:10,up:true,weight:2},
+    // ── Negativos ──
+    {label:'🟨 TARJETA AMARILLA',desc:'Amonestado · Una más y suspensión',pct:-3,up:false,weight:8},
+    {label:'🟥 TARJETA ROJA',desc:'Expulsado directamente · Sancionado 1 partido',pct:-9,up:false,weight:4},
+    {label:'🟨🟨 DOBLE AMARILLA',desc:'Doble amarilla · Expulsado · Pierde el próximo',pct:-8,up:false,weight:3},
+    {label:'⚠️ APERCIBIDO',desc:'5ª amarilla · Fuera del próximo partido',pct:-5,up:false,weight:5},
+    {label:'🏥 LESIÓN MUSCULAR',desc:'Lesión muscular · 2-3 semanas de baja',pct:-12,up:false,weight:5},
+    {label:'🏥 LESIÓN GRAVE',desc:'Rotura grave · Temporada en riesgo',pct:-25,up:false,weight:2},
+    {label:'😤 DERROTA',desc:'Su equipo pierde decisivamente',pct:-5,up:false,weight:8},
+    {label:'❌ PENALTI FALLADO',desc:'Falla un penalti decisivo',pct:-6,up:false,weight:4},
+    {label:'🚫 SUSPENSIÓN',desc:'Suspendido por acumulación de tarjetas',pct:-7,up:false,weight:4},
+    {label:'📉 SEQUÍA GOLEADORA',desc:'5 partidos sin marcar',pct:-4,up:false,weight:5},
   ],
   f1:[
-    {label:'🏁 VICTORIA',desc:'¡Gana la carrera!',pct:15,up:true},
-    {label:'🥉 PODIO',desc:'Termina en el podio',pct:8,up:true},
-    {label:'🚀 POLE POSITION',desc:'Consigue la pole',pct:6,up:true},
-    {label:'⏱️ VUELTA RÁPIDA',desc:'Establece la vuelta rápida',pct:5,up:true},
-    {label:'📈 REMONTADA',desc:'Remonta 10 posiciones',pct:10,up:true},
-    {label:'💥 ABANDONO',desc:'Sale de la carrera por accidente',pct:-8,up:false},
-    {label:'⛔ SANCIÓN',desc:'Penalización en parrilla',pct:-5,up:false},
-    {label:'🏥 LESIÓN',desc:'Lesión que le deja fuera',pct:-20,up:false},
+    {label:'🏁 VICTORIA',desc:'¡Gana la carrera!',pct:15,up:true,weight:6},
+    {label:'🥉 PODIO',desc:'Termina en el podio',pct:8,up:true,weight:8},
+    {label:'🚀 POLE POSITION',desc:'Consigue la pole',pct:6,up:true,weight:7},
+    {label:'⏱️ VUELTA RÁPIDA',desc:'Establece la vuelta rápida',pct:5,up:true,weight:6},
+    {label:'📈 REMONTADA',desc:'Remonta 10+ posiciones',pct:10,up:true,weight:4},
+    {label:'🏆 LÍDER CAMPEONATO',desc:'Encabeza el mundial de pilotos',pct:12,up:true,weight:3},
+    {label:'🔄 NUEVO CONTRATO',desc:'Renueva con equipo de cabeza',pct:8,up:true,weight:3},
+    {label:'💥 ABANDONO',desc:'Sale de la carrera por accidente',pct:-8,up:false,weight:6},
+    {label:'⛔ SANCIÓN',desc:'Penalización en parrilla',pct:-5,up:false,weight:7},
+    {label:'🚧 CHOQUE',desc:'Provoca un accidente con sanción',pct:-7,up:false,weight:5},
+    {label:'🏥 LESIÓN',desc:'Lesión que le deja fuera',pct:-20,up:false,weight:2},
+    {label:'📉 MALA CLASIFICACIÓN',desc:'Elimina en Q1',pct:-4,up:false,weight:6},
   ],
   motogp:[
-    {label:'🏁 VICTORIA GP',desc:'Gana la carrera',pct:15,up:true},
-    {label:'🥉 PODIO',desc:'Sube al podio',pct:8,up:true},
-    {label:'🚀 POLE',desc:'Pole position en clasificación',pct:6,up:true},
-    {label:'⏱️ V.RÁPIDA',desc:'Vuelta rápida de la carrera',pct:5,up:true},
-    {label:'💥 CAÍDA',desc:'Cae durante la carrera',pct:-8,up:false},
-    {label:'🏥 LESIÓN GRAVE',desc:'Lesión grave en la caída',pct:-25,up:false},
+    {label:'🏁 VICTORIA GP',desc:'Gana la carrera',pct:15,up:true,weight:6},
+    {label:'🥉 PODIO',desc:'Sube al podio',pct:8,up:true,weight:8},
+    {label:'🚀 POLE',desc:'Pole en clasificación',pct:6,up:true,weight:7},
+    {label:'⏱️ V.RÁPIDA',desc:'Vuelta rápida de la carrera',pct:5,up:true,weight:6},
+    {label:'🏆 CAMPEÓN MUNDIAL',desc:'¡Gana el campeonato del mundo!',pct:35,up:true,weight:1},
+    {label:'🔄 CONTRATO NUEVO',desc:'Firma con equipo de fábrica',pct:10,up:true,weight:3},
+    {label:'💥 CAÍDA SIN LESIÓN',desc:'Cae pero se levanta',pct:-5,up:false,weight:6},
+    {label:'🏥 LESIÓN LEVE',desc:'Lesión menor · Posible parar 1 carrera',pct:-10,up:false,weight:5},
+    {label:'🏥 LESIÓN GRAVE',desc:'Lesión grave en la caída',pct:-25,up:false,weight:2},
+    {label:'⛔ SANCIÓN FIM',desc:'Sancionado por la dirección de carrera',pct:-6,up:false,weight:4},
   ],
   tenis:[
-    {label:'🏆 TÍTULO',desc:'Gana el torneo',pct:20,up:true},
-    {label:'🎾 GRAND SLAM',desc:'¡Gana un Grand Slam!',pct:30,up:true},
-    {label:'📈 SEMIFINAL',desc:'Pasa a semifinales',pct:5,up:true},
-    {label:'😤 DERROTA',desc:'Eliminado en ronda temprana',pct:-7,up:false},
-    {label:'⚠️ RETIRO',desc:'Se retira por lesión en partido',pct:-12,up:false},
-    {label:'📉 RACHA',desc:'3 derrotas consecutivas',pct:-10,up:false},
+    {label:'🏆 TÍTULO',desc:'Gana el torneo',pct:20,up:true,weight:5},
+    {label:'🎾 GRAND SLAM',desc:'¡Gana un Grand Slam!',pct:30,up:true,weight:2},
+    {label:'📈 SEMIFINAL',desc:'Pasa a semifinales',pct:5,up:true,weight:7},
+    {label:'🥇 FINAL',desc:'Llega a la final del torneo',pct:10,up:true,weight:5},
+    {label:'📊 RANKING #1',desc:'Asciende al nº1 mundial',pct:18,up:true,weight:2},
+    {label:'⚡ REMONTADA',desc:'Gana desde un set abajo',pct:6,up:true,weight:4},
+    {label:'😤 DERROTA TEMPRANA',desc:'Eliminado en ronda temprana',pct:-7,up:false,weight:7},
+    {label:'⚠️ RETIRO',desc:'Se retira por lesión en partido',pct:-12,up:false,weight:4},
+    {label:'📉 RACHA NEGATIVA',desc:'3 derrotas consecutivas',pct:-10,up:false,weight:5},
+    {label:'🟨 AVISO',desc:'Recibe aviso por conducta antideportiva',pct:-3,up:false,weight:5},
+    {label:'💢 EXPULSIÓN',desc:'Descalificado del torneo',pct:-15,up:false,weight:2},
   ],
   ufc:[
-    {label:'💥 KO / TKO',desc:'Gana por nocaut técnico',pct:12,up:true},
-    {label:'🤼 SUMISIÓN',desc:'Gana por sumisión',pct:10,up:true},
-    {label:'✅ DECISIÓN',desc:'Gana por decisión unánime',pct:7,up:true},
-    {label:'👑 CINTURÓN',desc:'¡Defiende el cinturón!',pct:15,up:true},
-    {label:'🌟 KO DEL AÑO',desc:'Nominado al KO del año',pct:20,up:true},
-    {label:'😤 DERROTA KO',desc:'Pierde por nocaut',pct:-12,up:false},
-    {label:'🏥 LESIÓN',desc:'Lesión grave, fuera meses',pct:-20,up:false},
+    {label:'💥 KO / TKO',desc:'Gana por nocaut técnico',pct:12,up:true,weight:8},
+    {label:'🤼 SUMISIÓN',desc:'Gana por sumisión',pct:10,up:true,weight:7},
+    {label:'✅ DECISIÓN',desc:'Gana por decisión unánime',pct:7,up:true,weight:7},
+    {label:'👑 CINTURÓN',desc:'¡Defiende el cinturón!',pct:15,up:true,weight:4},
+    {label:'🌟 KO DEL AÑO',desc:'Nominado al KO del año',pct:20,up:true,weight:3},
+    {label:'🔥 PELEA ESTELAR',desc:'Confirmado en evento PPV principal',pct:8,up:true,weight:4},
+    {label:'😤 DERROTA KO',desc:'Pierde por nocaut',pct:-12,up:false,weight:5},
+    {label:'😤 DERROTA DECISIÓN',desc:'Pierde por decisión',pct:-7,up:false,weight:6},
+    {label:'🏥 LESIÓN',desc:'Lesión grave, fuera meses',pct:-20,up:false,weight:3},
+    {label:'⚖️ FALLO ANTIDOPAJE',desc:'Da positivo · Sancionado',pct:-30,up:false,weight:1},
+    {label:'❌ PELEA CANCELADA',desc:'Rival se retira · Incertidumbre',pct:-5,up:false,weight:4},
   ],
   nba:[
-    {label:'💯 50+ PUNTOS',desc:'Anota más de 50 puntos',pct:10,up:true},
-    {label:'📊 TRIPLE-DOBLE',desc:'Triple-doble histórico',pct:6,up:true},
-    {label:'⭐ MVP MES',desc:'Elegido MVP del mes',pct:12,up:true},
-    {label:'🏆 VICTORIA SERIE',desc:'Avanza en playoffs',pct:5,up:true},
-    {label:'😤 DERROTA SERIE',desc:'Pierde en playoffs',pct:-5,up:false},
-    {label:'🏥 LESIÓN',desc:'Fuera por lesión',pct:-15,up:false},
+    {label:'💯 50+ PUNTOS',desc:'Anota más de 50 puntos',pct:10,up:true,weight:4},
+    {label:'📊 TRIPLE-DOBLE',desc:'Triple-doble histórico',pct:6,up:true,weight:6},
+    {label:'⭐ MVP MES',desc:'Elegido MVP del mes',pct:12,up:true,weight:4},
+    {label:'🏆 VICTORIA SERIE',desc:'Avanza en playoffs',pct:5,up:true,weight:7},
+    {label:'🏅 ALL-STAR',desc:'Seleccionado para el All-Star',pct:8,up:true,weight:4},
+    {label:'🌟 MVP FINALS',desc:'MVP de las Finales NBA',pct:25,up:true,weight:2},
+    {label:'😤 DERROTA SERIE',desc:'Pierde en playoffs',pct:-5,up:false,weight:7},
+    {label:'🏥 LESIÓN',desc:'Fuera por lesión',pct:-15,up:false,weight:4},
+    {label:'🚫 SUSPENSIÓN',desc:'Suspendido varios partidos',pct:-8,up:false,weight:3},
+    {label:'📉 MALA RACHA',desc:'5 partidos consecutivos bajo el promedio',pct:-4,up:false,weight:6},
   ],
   golf:[
-    {label:'🏆 TÍTULO',desc:'Gana el torneo',pct:15,up:true},
-    {label:'⛳ MAJOR',desc:'¡Gana un major!',pct:25,up:true},
-    {label:'📈 TOP 5',desc:'Finaliza en el top 5',pct:6,up:true},
-    {label:'📉 MALA RONDA',desc:'Ronda muy sobre el par',pct:-5,up:false},
+    {label:'🏆 TÍTULO',desc:'Gana el torneo',pct:15,up:true,weight:6},
+    {label:'⛳ MAJOR',desc:'¡Gana un major!',pct:25,up:true,weight:3},
+    {label:'📈 TOP 5',desc:'Finaliza en el top 5',pct:6,up:true,weight:7},
+    {label:'🦅 EAGLE',desc:'Eagle en hoyo clave · Viral',pct:4,up:true,weight:5},
+    {label:'🌍 RYDER CUP',desc:'Héroe de la Ryder Cup',pct:12,up:true,weight:3},
+    {label:'📉 MALA RONDA',desc:'Ronda muy sobre el par',pct:-5,up:false,weight:7},
+    {label:'❌ CORTE',desc:'No supera el corte',pct:-4,up:false,weight:6},
+    {label:'🤬 INFRACCIÓN',desc:'Penalizado por infracción de reglas',pct:-3,up:false,weight:4},
   ],
   ciclismo:[
-    {label:'🏁 ETAPA',desc:'Gana una etapa',pct:8,up:true},
-    {label:'🏆 CLÁSICA',desc:'Gana una clásica',pct:15,up:true},
-    {label:'🌟 GRAND TOUR',desc:'¡Gana Giro/Tour/Vuelta!',pct:30,up:true},
-    {label:'💥 CAÍDA',desc:'Cae en el pelotón',pct:-8,up:false},
-    {label:'❌ ABANDONO',desc:'Abandona la carrera',pct:-10,up:false},
+    {label:'🏁 ETAPA',desc:'Gana una etapa',pct:8,up:true,weight:8},
+    {label:'🏆 CLÁSICA',desc:'Gana una clásica monumento',pct:15,up:true,weight:4},
+    {label:'🌟 GRAND TOUR',desc:'¡Gana Giro/Tour/Vuelta!',pct:30,up:true,weight:2},
+    {label:'🟡 MAILLOT',desc:'Lidera la clasificación general',pct:10,up:true,weight:5},
+    {label:'💥 CAÍDA SIN LESIÓN',desc:'Cae pero continúa la carrera',pct:-5,up:false,weight:6},
+    {label:'🏥 LESIÓN CAÍDA',desc:'Cae y abandona con lesión',pct:-15,up:false,weight:4},
+    {label:'❌ ABANDONO',desc:'Abandona la carrera por enfermedad',pct:-10,up:false,weight:5},
+    {label:'⚖️ POSITIVO DOPAJE',desc:'Positivo en control antidopaje',pct:-35,up:false,weight:1},
   ],
   padel:[
-    {label:'🏆 TÍTULO WPT',desc:'Gana torneo WPT',pct:12,up:true},
-    {label:'📈 FINAL',desc:'Llega a la final',pct:5,up:true},
-    {label:'📉 DERROTA',desc:'Eliminado en cuartos',pct:-5,up:false},
+    {label:'🏆 TÍTULO WPT',desc:'Gana torneo World Padel Tour',pct:12,up:true,weight:6},
+    {label:'📈 FINAL',desc:'Llega a la final',pct:5,up:true,weight:7},
+    {label:'🥇 RANKING WPT',desc:'Asciende al top 3 mundial',pct:10,up:true,weight:3},
+    {label:'🏅 MEJOR PUNTO',desc:'Su punto es viral en redes',pct:6,up:true,weight:4},
+    {label:'📉 DERROTA',desc:'Eliminado en cuartos',pct:-5,up:false,weight:7},
+    {label:'🏥 LESIÓN',desc:'Lesión que le aparta semanas',pct:-12,up:false,weight:3},
+    {label:'🔄 CAMBIO PAREJA',desc:'Ruptura con su pareja · Incertidumbre',pct:-6,up:false,weight:4},
   ],
 };
 
@@ -1334,8 +1920,8 @@ function buildPortfolio(){
       </div>
       <div style="height:3px;background:var(--b1);border-radius:2px;margin-bottom:6px;"><div style="width:${bw}%;height:100%;background:${c};border-radius:2px;transition:width .5s;"></div></div>
       <div style="display:flex;gap:5px;flex-wrap:wrap;">
-        <button class="sm smg" onclick="event.stopPropagation();showToast('Vendiendo ${a.name}')">Principal</button>
-        <button class="sm smo" onclick="event.stopPropagation();showToast('Sec. -5%')">Sec. -5%</button>
+        <button class="sm smg" onclick="event.stopPropagation();openSellModal('${k}')">🏦 Vender</button>
+        <button class="sm smo" onclick="event.stopPropagation();openSellModal('${k}');selectSellOpt('b')">⚡ Sec.</button>
         <button class="sm smb" onclick="event.stopPropagation();showToast('🔔 Alerta')">🔔</button>
         <button class="sm smgh" onclick="event.stopPropagation();openAth('${k}')">Ver</button>
       </div>
@@ -1380,13 +1966,25 @@ function buildTicker(){
 // ═══════════════════════════════
 // EVENT ENGINE
 // ═══════════════════════════════
+function weightedRandom(pool){
+  const totalW=pool.reduce((s,e)=>s+(e.weight||1),0);
+  let r=Math.random()*totalW;
+  for(const e of pool){r-=(e.weight||1);if(r<=0)return e;}
+  return pool[pool.length-1];
+}
 function fireEvent(){
   if(!engineRunning)return;
   const keys=Object.keys(ATHLETES);
   const k=keys[Math.floor(Math.random()*keys.length)];
   const a=ATHLETES[k];
-  const pool=EVENT_TYPES[a.sport]||EVENT_TYPES.futbol;
-  const ev=pool[Math.floor(Math.random()*pool.length)];
+  // 15% chance of a global rule (hype, inactividad, escándalo, etc.)
+  let ev;
+  if(Math.random()<0.15){
+    ev=weightedRandom(GLOBAL_RULES);
+  } else {
+    const pool=EVENT_TYPES[a.sport]||EVENT_TYPES.futbol;
+    ev=weightedRandom(pool);
+  }
   const old=a.price;
   const effectivePct=ev.pct*engineMult;
   a.price=Math.max(1000,old*(1+effectivePct/100));
@@ -1403,6 +2001,7 @@ function fireEvent(){
   updatePortfolioPrices();
   addEngineLog(evData);
   updateDivisionProgress();
+  checkAlerts(evData);
   if(currentModalKey===k)refreshModal(k);
 }
 function updatePriceRow(k,up){
@@ -1518,6 +2117,8 @@ function nav(id){
   closeMore();
   if(id==='mercado')buildMarket();
   if(id==='portfolio'){buildPortfolio();}
+  if(id==='heatmap'){setTimeout(buildHeatmap,80);}
+  if(id==='alertas'){updateAlertsScreen();}
 }
 function toggleMore(){mktMoreOpen=!mktMoreOpen;document.getElementById('more-menu').style.display=mktMoreOpen?'block':'none';document.getElementById('more-ov').style.display=mktMoreOpen?'block':'none';if(mktMoreOpen)document.getElementById('ni-more').classList.add('on');}
 function closeMore(){mktMoreOpen=false;document.getElementById('more-menu').style.display='none';document.getElementById('more-ov').style.display='none';}
@@ -1619,7 +2220,277 @@ function buildSportWeightGrid(){
 }
 
 // ═══════════════════════════════
-// DIVISION SYSTEM (Clash Royale)
+// SMART ALERTS SYSTEM
+// ═══════════════════════════════
+const alerts=[];
+let alertsNegStreak={};// track consecutive negative events per athlete
+let alertsPosStreak={};
+let alertFilter='all';
+function checkAlerts(evData){
+  const k=evData.key;
+  if(!evData.up){
+    alertsNegStreak[k]=(alertsNegStreak[k]||0)+1;
+    alertsPosStreak[k]=0;
+  } else {
+    alertsPosStreak[k]=(alertsPosStreak[k]||0)+1;
+    alertsNegStreak[k]=0;
+  }
+  const a=ATHLETES[k];
+  const negS=alertsNegStreak[k]||0;
+  const posS=alertsPosStreak[k]||0;
+  let alertObj=null;
+  if(negS===3){
+    alertObj={type:'warn',icon:'⚠️',title:`${a.name} en racha negativa`,desc:`3 eventos negativos seguidos · Posible bajada mayor`,time:evData.time,k};
+  } else if(negS===5){
+    alertObj={type:'danger',icon:'🚨',title:`ATENCIÓN: ${a.name} sigue cayendo`,desc:`5 eventos negativos · Considera vender o usar un Boost`,time:evData.time,k};
+  } else if(posS===4){
+    alertObj={type:'good',icon:'🔥',title:`${a.name} en RACHA POSITIVA`,desc:`4 eventos positivos seguidos · Buena oportunidad de comprar`,time:evData.time,k};
+  }
+  if(Math.abs(evData.pct)>=15){
+    alertObj={type:evData.up?'good':'danger',icon:evData.up?'🚀':'💥',title:`${evData.up?'Subida':'Caída'} importante: ${a.name}`,desc:`${evData.ev.label} · ${evData.up?'+':''}${evData.pct.toFixed(1)}% · ${evData.ev.desc}`,time:evData.time,k};
+  }
+  if(portfolio[k]&&!evData.up&&Math.abs(evData.pct)>=8){
+    alertObj={type:'danger',icon:'💼',title:`⚠️ Tu posición en ${a.name} cae`,desc:`${evData.ev.label} · Revisa si quieres vender`,time:evData.time,k,isPort:true};
+  }
+  if(alertObj){
+    alerts.unshift(alertObj);if(alerts.length>30)alerts.pop();
+    showAlertBadge();
+    updateAlertsScreen();
+  }
+}
+let alertsBadge=0;
+function showAlertBadge(){
+  alertsBadge++;
+  const badge=document.getElementById('alert-badge');
+  if(badge)badge.style.display='block';
+}
+function filterAlerts(type,btn){
+  alertFilter=type;
+  document.querySelectorAll('[id^="al-f-"]').forEach(b=>b.classList.remove('on'));
+  if(btn)btn.classList.add('on');
+  updateAlertsScreen();
+}
+function updateAlertsScreen(){
+  const el=document.getElementById('alerts-list');if(!el)return;
+  let filtered=alerts;
+  if(alertFilter==='danger')filtered=alerts.filter(a=>a.type==='danger');
+  else if(alertFilter==='good')filtered=alerts.filter(a=>a.type==='good');
+  else if(alertFilter==='warn')filtered=alerts.filter(a=>a.type==='warn');
+  else if(alertFilter==='port')filtered=alerts.filter(a=>a.isPort);
+  if(filtered.length===0){
+    el.innerHTML=`<div style="padding:32px 20px;text-align:center;color:var(--t3)"><div style="font-size:32px;margin-bottom:10px">🔔</div><div style="font-size:12px;font-weight:800;margin-bottom:4px">Sin alertas${alertFilter!=='all'?' en esta categoría':' todavía'}</div><div style="font-size:9.5px;line-height:1.5">${alertFilter!=='all'?'Prueba cambiando el filtro':'Las alertas aparecerán en tiempo real cuando el motor detecte patrones'}</div></div>`;
+    return;
+  }
+  el.innerHTML=filtered.map((al,i)=>{
+    const cls={'warn':'alert-warn','danger':'alert-danger','good':'alert-good','info':'alert-info'}[al.type]||'alert-info';
+    const c={'warn':'var(--gold)','danger':'var(--red)','good':'var(--green)','info':'var(--blue)'}[al.type];
+    const realIdx=alerts.indexOf(al);
+    return`<div class="alert-card ${cls}" onclick="openAth('${al.k}');nav('mercado')">
+      <div style="font-size:20px;flex-shrink:0">${al.icon}</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-weight:800;font-size:10.5px;color:${c}">${al.title}</div>
+        <div style="font-size:9px;color:var(--t2);margin-top:2px">${al.desc}</div>
+        <div style="font-size:8px;color:var(--t3);margin-top:3px">${al.time}</div>
+      </div>
+      <button class="sm smgh" style="font-size:8px;padding:3px 6px;flex-shrink:0" onclick="event.stopPropagation();dismissAlert(${realIdx})">✕</button>
+    </div>`;
+  }).join('');
+}
+
+function dismissAlert(i){
+  alerts.splice(i,1);
+  if(alerts.length===0){const b=document.getElementById('alert-badge');if(b)b.style.display='none';}
+  updateAlertsScreen();
+}
+
+// ═══════════════════════════════
+// SELL MODAL
+// ═══════════════════════════════
+let currentSellKey=null, currentSellOpt=null;
+function openSellModal(k){
+  currentSellKey=k;currentSellOpt=null;
+  const a=ATHLETES[k];const pos=portfolio[k];if(!a||!pos)return;
+  document.getElementById('sell-em').textContent=a.em;
+  document.getElementById('sell-name').textContent=a.name;
+  document.getElementById('sell-meta').textContent=a.team+' · '+a.sport;
+  document.getElementById('sell-buy-price').textContent=fmt(pos.buyPrice)+' MV';
+  document.getElementById('sell-cur-price').textContent=fmt(a.price)+' MV';
+  const rg=(a.price-pos.buyPrice)/pos.buyPrice*100;
+  const rgEl=document.getElementById('sell-rg');
+  rgEl.textContent=fmtPct(rg);rgEl.style.color=rg>=0?'var(--green)':'var(--red)';
+  document.getElementById('sell-a-amt').textContent=fmt(a.price)+' MV';
+  document.getElementById('sell-b-amt').textContent=fmt(a.price*0.95)+' MV (−5%)';
+  document.getElementById('sell-confirm-wrap').style.display='none';
+  document.getElementById('sell-choose-msg').style.display='block';
+  document.getElementById('sell-opt-a').classList.remove('sell-opt-sel');
+  document.getElementById('sell-opt-b').classList.remove('sell-opt-sel');
+  document.getElementById('modal-sell').classList.add('on');
+}
+function closeSellModal(){
+  document.getElementById('modal-sell').classList.remove('on');
+  currentSellKey=null;currentSellOpt=null;
+}
+function selectSellOpt(opt){
+  currentSellOpt=opt;
+  const a=document.getElementById('sell-opt-a');
+  const b=document.getElementById('sell-opt-b');
+  a.classList.toggle('sell-opt-sel',opt==='a');
+  b.classList.toggle('sell-opt-sel',opt==='b');
+  const k=currentSellKey;const pos=portfolio[k];const athlete=ATHLETES[k];
+  const amt=opt==='a'?fmt(athlete.price):fmt(athlete.price*0.95);
+  const banner=document.getElementById('sell-confirm-banner');
+  if(opt==='a'){
+    banner.textContent='🏦 Mercado Principal · Recibirás '+fmt(athlete.price)+' MV en 2–3 días';
+    banner.style.background='rgba(0,230,118,.08)';banner.style.borderColor='rgba(0,230,118,.2)';
+  } else {
+    banner.textContent='⚡ Mercado Secundario · Recibirás '+fmt(athlete.price*0.95)+' MV ahora mismo';
+    banner.style.background='rgba(255,184,0,.06)';banner.style.borderColor='rgba(255,184,0,.2)';
+  }
+  document.getElementById('sell-confirm-wrap').style.display='block';
+  document.getElementById('sell-choose-msg').style.display='none';
+}
+function executeSell(){
+  const k=currentSellKey;if(!k||!currentSellOpt)return;
+  const a=ATHLETES[k];
+  const msg=currentSellOpt==='a'
+    ?`🏦 Venta enviada · ${a.name} · Recibirás ${fmt(a.price)} MV en 2–3 días`
+    :`⚡ Vendido al instante · ${a.name} · ${fmt(a.price*0.95)} MV acreditados`;
+  delete portfolio[k];
+  buildPortfolio();
+  closeSellModal();
+  showToast(msg,3500);
+}
+
+// ═══════════════════════════════
+// HEATMAP
+// ═══════════════════════════════
+const HM_SPORTS=['todos','futbol','f1','motogp','tenis','ufc','nba','golf','ciclismo','padel'];
+let hmSportIdx=0;
+function cycleHmSport(){
+  hmSportIdx=(hmSportIdx+1)%HM_SPORTS.length;
+  const s=HM_SPORTS[hmSportIdx];
+  const labels={todos:'🌍 Todos',futbol:'⚽ Fútbol',f1:'🏎️ F1',motogp:'🏍️ MotoGP',tenis:'🎾 Tenis',ufc:'🥊 UFC',nba:'🏀 NBA',golf:'⛳ Golf',ciclismo:'🚴 Cicl.',padel:'🎽 Pádel'};
+  document.getElementById('hm-sport-btn').textContent=labels[s]||s;
+  buildHeatmap();
+}
+function getRgColor(rg){
+  if(rg>15)return`rgba(0,230,118,0.95)`;
+  if(rg>8)return`rgba(0,200,90,0.85)`;
+  if(rg>3)return`rgba(0,160,70,0.70)`;
+  if(rg>0)return`rgba(0,100,50,0.55)`;
+  if(rg>-3)return`rgba(80,30,40,0.6)`;
+  if(rg>-8)return`rgba(200,40,60,0.7)`;
+  return`rgba(255,61,87,0.92)`;
+}
+function buildHeatmap(){
+  const container=document.getElementById('heatmap-container');if(!container)return;
+  const sport=HM_SPORTS[hmSportIdx];
+  let keys=Object.keys(ATHLETES);
+  if(sport!=='todos')keys=keys.filter(k=>ATHLETES[k].sport===sport);
+  if(keys.length===0){container.innerHTML='<div style="padding:24px;text-align:center;color:var(--t3)">Sin datos para este deporte</div>';return;}
+  // Sort by price descending (bigger = larger cell)
+  keys.sort((a,b)=>ATHLETES[b].price-ATHLETES[a].price);
+  const maxP=ATHLETES[keys[0]].price;
+  // Simple grid layout based on relative market cap
+  const W=container.offsetWidth||380;
+  const H=280;container.style.height=H+'px';
+  // Treemap-like: use simple row-fill approach
+  let html='<div style="display:flex;flex-wrap:wrap;gap:2px;padding:4px;height:100%;align-content:flex-start;">';
+  keys.forEach(k=>{
+    const a=ATHLETES[k];
+    const rg=getRg(k);
+    const share=a.price/maxP;
+    const w=Math.max(share*170,50);
+    const h=Math.max(share*90,44);
+    const bg=getRgColor(rg);
+    const tc=rg>0?'#fff':'#ffcccc';
+    html+=`<div class="hm-cell" style="width:${w.toFixed(0)}px;height:${h.toFixed(0)}px;background:${bg};" onclick="openAth('${k}')">
+      <div class="hm-em">${a.em}</div>
+      <div class="hm-name" style="color:${tc}">${a.name.split(' ').slice(-1)[0]}</div>
+      <div class="hm-pct" style="color:${rg>=0?'#aaffcc':'#ffaaaa'}">${fmtPct(rg)}</div>
+    </div>`;
+  });
+  html+='</div>';
+  container.innerHTML=html;
+  // Stats
+  const gainers=keys.filter(k=>getRg(k)>0).length;
+  const losers=keys.filter(k=>getRg(k)<0).length;
+  document.getElementById('hm-gainers').textContent=gainers;
+  document.getElementById('hm-losers').textContent=losers;
+  const topK=keys.reduce((a,b)=>getRg(a)>getRg(b)?a:b);
+  document.getElementById('hm-top-ath').textContent=ATHLETES[topK].em;
+  // Sport bars
+  const sportBar=document.getElementById('hm-sport-bars');
+  if(sportBar){
+    const sports={futbol:'⚽',f1:'🏎️',motogp:'🏍️',tenis:'🎾',ufc:'🥊',nba:'🏀',golf:'⛳',ciclismo:'🚴',padel:'🎽'};
+    sportBar.innerHTML=Object.entries(sports).map(([sp,em])=>{
+      const sk=Object.keys(ATHLETES).filter(k=>ATHLETES[k].sport===sp);
+      if(sk.length===0)return'';
+      const avgRg=sk.reduce((s,k)=>s+getRg(k),0)/sk.length;
+      const bw=Math.min(Math.abs(avgRg)*3,100);
+      const bc=avgRg>=0?'var(--green)':'var(--red)';
+      return`<div style="display:flex;align-items:center;gap:7px;">
+        <div style="font-size:13px;width:18px;">${em}</div>
+        <div style="flex:1;height:5px;background:var(--b1);border-radius:3px;overflow:hidden;"><div style="width:${bw.toFixed(0)}%;height:100%;background:${bc};border-radius:3px;"></div></div>
+        <div class="mono" style="font-size:9px;font-weight:700;color:${bc};width:38px;text-align:right">${fmtPct(avgRg)}</div>
+      </div>`;
+    }).join('');
+  }
+}
+
+// ═══════════════════════════════
+// LIGHT / DARK MODE
+// ═══════════════════════════════
+function toggleTheme(toggle){
+  const isLight=!toggle.classList.contains('on');
+  document.body.classList.toggle('light',isLight);
+  document.getElementById('theme-lbl').textContent=isLight?'Claro':'Oscuro';
+  showToast(isLight?'☀️ Tema claro activado':'🌙 Tema oscuro activado');
+}
+
+// ═══════════════════════════════
+// DESPACHO / ROOM
+// ═══════════════════════════════
+const ROOM_SLOTS=[
+  {x:'10%',y:'60px'},{x:'30%',y:'55px'},{x:'50%',y:'50px'},{x:'68%',y:'55px'},
+  {x:'15%',y:'110px'},{x:'40%',y:'100px'},{x:'62%',y:'105px'},
+  {x:'25%',y:'145px'},{x:'55%',y:'140px'},
+];
+let roomItems=['💼','🪑','🖥️','🏆','📊',null,null,'💡',null];
+let roomEditMode=false;
+function renderRoom(){
+  const el=document.getElementById('room-items-display');if(!el)return;
+  el.innerHTML=roomItems.map((item,i)=>{
+    if(!item||!ROOM_SLOTS[i])return'';
+    const s=ROOM_SLOTS[i];
+    return`<div class="room-item" style="left:${s.x};top:${s.y}" onclick="removeRoomItem(${i})" title="Toca para quitar">${item}</div>`;
+  }).join('');
+}
+function placeItem(el,emoji,name){
+  const empty=roomItems.findIndex(x=>!x);
+  if(empty===-1){showToast('🖥️ Despacho lleno · Quita algo primero');return;}
+  roomItems[empty]=emoji;renderRoom();
+  showToast('✅ '+name+' colocado en el despacho');
+}
+function removeRoomItem(idx){
+  if(!roomEditMode)return;
+  roomItems[idx]=null;renderRoom();
+  showToast('🗑️ Objeto retirado');
+}
+function toggleRoomEdit(){
+  roomEditMode=!roomEditMode;
+  document.getElementById('room-edit-panel').style.display=roomEditMode?'block':'none';
+  document.getElementById('room-edit-btn').textContent=roomEditMode?'✅ Listo':'✏️ Editar';
+  if(roomEditMode)showToast('✏️ Modo edición · Toca objetos del despacho para quitarlos');
+}
+
+// ═══════════════════════════════
+// ALERTS SCREEN (added to nav)
+// ═══════════════════════════════
+function buildAlertsScreen(){
+  updateAlertsScreen();
+}
+
 // ═══════════════════════════════
 const DIVISIONS=[
   {id:'bronce',name:'Bronce',icon:'🥉',color:'#CD7F32',req:0,top:null,rewards:'500 MT + Avatar Bronce'},
@@ -1760,6 +2631,7 @@ function init(){
   buildPortfolio();
   buildSportWeightGrid();
   buildDivisionLadder();
+  renderTIDPreview();
   startEngine();
   // Fire 3 quick events on start
   setTimeout(fireEvent,1200);
