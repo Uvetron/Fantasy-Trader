@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -273,13 +272,31 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 .hv em{color:var(--green);font-style:normal;}
 /* Scout */
 .scout-card{margin:0 11px 8px;background:linear-gradient(135deg,rgba(45,212,191,.06),rgba(0,0,0,0));border:1px solid rgba(45,212,191,.2);border-radius:var(--r);padding:13px;}
+/* Division milestone chips */
+.div-ms{flex:1;padding:4px 3px;border-radius:6px;text-align:center;font-size:9px;font-weight:800;background:var(--s2);border:1px solid var(--b1);color:var(--t3);position:relative;}
+.div-ms.done{background:rgba(0,230,118,.12);border-color:rgba(0,230,118,.3);color:var(--green);}
+.div-ms.done::after{content:'✓';position:absolute;top:-5px;right:-3px;width:12px;height:12px;background:var(--green);color:#000;border-radius:50%;font-size:7px;display:flex;align-items:center;justify-content:center;font-weight:900;}
+/* Full ladder row */
+.fl-row{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:var(--rs);margin-bottom:3px;border:1px solid var(--b1);cursor:pointer;transition:all .2s;position:relative;overflow:hidden;}
+.fl-row:hover{border-color:var(--b2);}
+.fl-row.fl-current{border-color:var(--green);background:rgba(0,230,118,.04);}
+.fl-row.fl-done{opacity:.7;}
+.fl-row.fl-locked{opacity:.4;}
+.fl-ico{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.fl-bar-bg{position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--b1);}
+.fl-bar-fill{height:100%;transition:width 1s ease;}
+/* Engine log entry */
+.eng-entry{padding:2px 4px;border-radius:3px;display:flex;gap:6px;align-items:center;}
+.eng-entry.up{color:var(--green);}
+.eng-entry.dn{color:var(--red);}
+/* Search input override */
+#mkt-search::placeholder{color:var(--t3);}
 </style>
 </head>
 <body>
 <div class="shell">
 
 <!-- TOPBAR -->
-
 <div class="topbar">
   <div style="display:flex;align-items:center;gap:7px;">
     <div class="logo" onclick="nav('inicio')">⚡ FT</div>
@@ -294,7 +311,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 </div>
 
 <!-- LIVE TICKER -->
-
 <div class="ticker-wrap">
   <div class="ticker-track" id="ticker-track">
     <div id="ticker-a"></div><div id="ticker-b"></div>
@@ -302,7 +318,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 </div>
 
 <!-- MARKET STATUS BAR -->
-
 <div class="mkt-bar">
   <div style="width:6px;height:6px;border-radius:50%;background:var(--green);animation:lpulse 1.5s infinite;"></div>
   <div style="font-size:9px;color:var(--t2);flex:1;">Mercado abierto · Precios en tiempo real</div>
@@ -310,13 +325,11 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 </div>
 
 <!-- EVENT NOTIFICATION OVERLAY -->
-
 <div class="ev-feed" id="ev-feed"></div>
 
 <div class="content">
 
 <!-- ══════════ INICIO ══════════ -->
-
 <div class="sc on" id="sc-inicio">
   <div class="hero">
     <div style="font-size:8.5px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--t3);">Patrimonio Total</div>
@@ -369,13 +382,58 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 </div>
 
 <!-- ══════════ MERCADO ══════════ -->
-
 <div class="sc" id="sc-mercado">
   <div style="padding:10px 13px 6px;display:flex;align-items:center;justify-content:space-between;">
     <div><div style="font-family:'Bebas Neue';font-size:21px;letter-spacing:1px;">Mercado en Vivo</div><div style="font-size:9px;color:var(--t2);" id="mkt-sub">24 deportistas</div></div>
     <div style="display:flex;gap:5px;">
       <button class="sm smgh" onclick="toggleSort()">⇅ <span id="sort-lbl">R%</span></button>
+      <button class="sm smgh" id="btn-filters" onclick="toggleMktFilters()">⚙️ Filtros</button>
       <button class="sm smb" onclick="nav('reglas')">📋 Reglas</button>
+    </div>
+  </div>
+  <!-- Search bar -->
+  <div style="padding:0 11px 6px;position:relative;">
+    <input id="mkt-search" type="text" placeholder="🔍  Buscar deportista…" oninput="buildMarket()"
+      style="width:100%;padding:8px 12px 8px 34px;background:var(--s2);border:1px solid var(--b1);border-radius:20px;color:var(--t1);font-family:'DM Sans';font-size:11px;outline:none;transition:border-color .2s;"
+      onfocus="this.style.borderColor='var(--green)'" onblur="this.style.borderColor='var(--b1)'">
+    <span style="position:absolute;left:20px;top:50%;transform:translateY(-50%);font-size:13px;pointer-events:none;">🔍</span>
+    <button id="mkt-search-clear" onclick="clearMktSearch()" style="display:none;position:absolute;right:20px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--t3);font-size:14px;cursor:pointer;">✕</button>
+  </div>
+  <!-- Advanced filters panel (collapsible) -->
+  <div id="mkt-filter-panel" style="display:none;margin:0 11px 6px;background:var(--s2);border:1px solid var(--b2);border-radius:var(--r);padding:10px;">
+    <div style="font-size:8.5px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--t3);margin-bottom:7px;">Filtros Avanzados</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:7px;">
+      <div>
+        <div style="font-size:8px;color:var(--t3);margin-bottom:3px;font-weight:700;">TENDENCIA</div>
+        <div style="display:flex;gap:4px;">
+          <button class="sm smgh" id="ftr-all" onclick="setFtrTrend('all',this)" style="font-size:8px;padding:3px 7px;background:var(--green);color:#000;border-color:var(--green)">Todos</button>
+          <button class="sm smgh" id="ftr-up" onclick="setFtrTrend('up',this)" style="font-size:8px;padding:3px 7px;">📈 Subiendo</button>
+          <button class="sm smgh" id="ftr-dn" onclick="setFtrTrend('dn',this)" style="font-size:8px;padding:3px 7px;">📉 Bajando</button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:8px;color:var(--t3);margin-bottom:3px;font-weight:700;">VOLATILIDAD</div>
+        <div style="display:flex;gap:4px;flex-wrap:wrap;">
+          <button class="sm smgh" id="fvol-all" onclick="setFtrVol('all',this)" style="font-size:8px;padding:3px 7px;background:var(--green);color:#000;border-color:var(--green)">Todas</button>
+          <button class="sm smgh" id="fvol-Alta" onclick="setFtrVol('Alta',this)" style="font-size:8px;padding:3px 7px;">🔥 Alta</button>
+          <button class="sm smgh" id="fvol-Media" onclick="setFtrVol('Media',this)" style="font-size:8px;padding:3px 7px;">〰️ Media</button>
+          <button class="sm smgh" id="fvol-Baja" onclick="setFtrVol('Baja',this)" style="font-size:8px;padding:3px 7px;">❄️ Baja</button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:8px;color:var(--t3);margin-bottom:3px;font-weight:700;">RANGO DE PRECIO</div>
+      <div style="display:flex;gap:4px;flex-wrap:wrap;">
+        <button class="sm smgh" id="fpr-all" onclick="setFtrPrice('all',this)" style="font-size:8px;padding:3px 7px;background:var(--green);color:#000;border-color:var(--green)">Todos</button>
+        <button class="sm smgh" id="fpr-low" onclick="setFtrPrice('low',this)" style="font-size:8px;padding:3px 7px;">&lt;500K</button>
+        <button class="sm smgh" id="fpr-mid" onclick="setFtrPrice('mid',this)" style="font-size:8px;padding:3px 7px;">500K–2M</button>
+        <button class="sm smgh" id="fpr-high" onclick="setFtrPrice('high',this)" style="font-size:8px;padding:3px 7px;">&gt;2M</button>
+        <button class="sm smgh" id="fpr-port" onclick="setFtrPrice('port',this)" style="font-size:8px;padding:3px 7px;">💼 En cartera</button>
+      </div>
+    </div>
+    <div style="margin-top:7px;display:flex;justify-content:space-between;align-items:center;">
+      <div id="ftr-active-lbl" style="font-size:8.5px;color:var(--t2);">Sin filtros activos</div>
+      <button class="sm smr" onclick="resetFilters()" style="font-size:8px;padding:3px 8px;">Limpiar todo</button>
     </div>
   </div>
   <div class="stabs" id="mkt-stabs">
@@ -408,7 +466,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 </div>
 
 <!-- ══════════ PORTFOLIO ══════════ -->
-
 <div class="sc" id="sc-portfolio">
   <div style="padding:10px 13px 0;font-family:'Bebas Neue';font-size:21px;letter-spacing:1px;">Mi Portfolio</div>
   <div class="chart-wrap">
@@ -453,7 +510,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 </div>
 
 <!-- ══════════ RANKING ══════════ -->
-
 <div class="sc" id="sc-ranking">
   <div style="padding:10px 13px 0;"><div style="font-family:'Bebas Neue';font-size:21px;letter-spacing:1px;">Rankings</div></div>
   <div class="rank-tabs">
@@ -477,18 +533,72 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
     <div class="tag tb">💎 División Diamante · Top 100</div>
     <button class="sm smgh" onclick="toggleDivLadder()">🏅 Divisiones</button>
   </div>
-  <!-- Division ladder collapsible -->
-  <div id="div-ladder" style="display:none;padding:0 11px 4px;">
-    <div style="font-size:9px;color:var(--t2);margin-bottom:6px;">Tu progreso de divisiones. Sube ganando RG% mensual.</div>
-    <div class="div-rung" style="opacity:.5"><div class="div-ico" style="background:rgba(167,139,250,.1)">🌟</div><div style="flex:1"><div style="font-weight:700;font-size:11px;">Hall of Fame</div><div style="font-size:8.5px;color:var(--t2)">Top 3 España · 3 meses consecutivos</div><div class="div-bar"><div class="div-bar-fill" style="width:0;background:var(--purple)"></div></div></div><div class="tag tp" style="font-size:7.5px;">Exclusivo</div></div>
-    <div style="text-align:center;color:var(--t3);font-size:10px;padding:2px 0;">▲</div>
-    <div class="div-rung" style="opacity:.6"><div class="div-ico" style="background:rgba(56,189,248,.1)">💎</div><div style="flex:1"><div style="font-weight:700;font-size:11px;">Diamante Élite</div><div style="font-size:8.5px;color:var(--t2)">Top 10 España · +60% RG</div><div class="div-bar"><div class="div-bar-fill" style="width:39%;background:var(--blue)"></div></div></div><div style="font-size:9px;color:var(--blue);font-weight:700">39%</div></div>
-    <div style="text-align:center;color:var(--t3);font-size:10px;padding:2px 0;">▲</div>
-    <div class="div-rung current-div"><div class="div-ico" style="background:rgba(56,189,248,.15);box-shadow:0 0 10px rgba(56,189,248,.2)">💎</div><div style="flex:1"><div style="font-weight:700;font-size:11px;">💎 Diamante <span class="tag tg" style="font-size:7px;">TÚ</span></div><div style="font-size:8.5px;color:var(--t2)">Top 100 España · +30% RG</div><div class="div-bar"><div class="div-bar-fill" style="width:78%;background:var(--green)"></div></div></div><div style="font-size:9px;color:var(--green);font-weight:700">78%→</div></div>
-    <div style="text-align:center;color:var(--t3);font-size:10px;padding:2px 0;">▲</div>
-    <div class="div-rung"><div class="div-ico" style="background:rgba(255,184,0,.1)">🥇</div><div style="flex:1"><div style="font-weight:700;font-size:11px;">Platino</div><div style="font-size:8.5px;color:var(--t2)">Top 500 España · +15% RG</div><div class="div-bar"><div class="div-bar-fill" style="width:100%;background:var(--gold)"></div></div></div><div style="font-size:9px;color:var(--gold);font-weight:700">✓</div></div>
-    <div style="text-align:center;color:var(--t3);font-size:10px;padding:2px 0;">▲</div>
-    <div class="div-rung"><div class="div-ico" style="background:rgba(192,200,216,.1)">🥈</div><div style="flex:1"><div style="font-weight:700;font-size:11px;">Oro</div><div style="font-size:8.5px;color:var(--t2)">Top 2.000 · +5% RG</div></div><div style="font-size:9px;color:var(--t2);font-weight:700">✓</div></div>
+  <!-- CLASH ROYALE DIVISION SYSTEM -->
+  <div id="div-ladder" style="display:none;">
+    <!-- Current division hero card -->
+    <div style="margin:0 11px 6px;background:linear-gradient(135deg,rgba(56,189,248,.12),rgba(0,0,0,0));border:1.5px solid rgba(56,189,248,.35);border-radius:var(--r);padding:13px;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:-18px;right:-18px;font-size:80px;opacity:.07;pointer-events:none;">💎</div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+        <div style="width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,rgba(56,189,248,.3),rgba(0,230,118,.15));border:2px solid rgba(56,189,248,.5);display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 0 18px rgba(56,189,248,.25);">💎</div>
+        <div style="flex:1">
+          <div style="font-family:'Bebas Neue';font-size:22px;letter-spacing:1px;color:var(--blue)">DIAMANTE</div>
+          <div style="font-size:9px;color:var(--t2)">División actual · Top 100 España · Mes: Mar 2026</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-family:'Bebas Neue';font-size:28px;color:var(--green);line-height:1" id="div-rg-live">+8.4%</div>
+          <div style="font-size:8px;color:var(--t3)">RG del mes</div>
+        </div>
+      </div>
+      <!-- Progress to next division -->
+      <div style="margin-bottom:4px;display:flex;justify-content:space-between;align-items:center;">
+        <div style="font-size:8.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--t2)">Progreso → 💎 Diamante Élite</div>
+        <div style="font-family:'JetBrains Mono';font-size:9px;font-weight:700;color:var(--green)" id="div-prog-lbl">8.4% / 60%</div>
+      </div>
+      <div style="height:10px;background:rgba(0,0,0,.3);border-radius:5px;overflow:hidden;border:1px solid rgba(255,255,255,.06);margin-bottom:5px;">
+        <div id="div-prog-bar" style="height:100%;border-radius:5px;background:linear-gradient(90deg,var(--green),var(--blue));transition:width 1s ease;box-shadow:0 0 8px rgba(0,230,118,.5);" ></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:8px;color:var(--t3);">
+        <span>0% RG</span>
+        <span style="color:var(--gold);font-weight:700">🎯 Meta: +60% RG este mes</span>
+        <span>+60%</span>
+      </div>
+      <!-- Milestones row -->
+      <div style="display:flex;gap:4px;margin-top:8px;" id="div-milestones">
+        <div class="div-ms done" data-rg="10">+10%</div>
+        <div class="div-ms" data-rg="20">+20%</div>
+        <div class="div-ms" data-rg="30">+30%</div>
+        <div class="div-ms" data-rg="40">+40%</div>
+        <div class="div-ms" data-rg="50">+50%</div>
+        <div class="div-ms" data-rg="60">🏆</div>
+      </div>
+    </div>
+    <!-- Full divisions ladder -->
+    <div style="padding:0 11px;margin-bottom:8px;">
+      <div style="font-size:8.5px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--t3);margin-bottom:7px;">🏆 Escalera de Divisiones</div>
+      <div id="div-full-ladder"></div>
+    </div>
+    <!-- Season timer -->
+    <div style="margin:0 11px 8px;background:var(--s2);border:1px solid var(--b1);border-radius:var(--rs);padding:9px 12px;display:flex;align-items:center;gap:8px;">
+      <div style="font-size:18px;">⏳</div>
+      <div style="flex:1">
+        <div style="font-size:10.5px;font-weight:700;">Reset mensual</div>
+        <div style="font-size:8.5px;color:var(--t2)">El RG% se reinicia el 1 de Abril. Las divisiones se consolidan.</div>
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <div style="font-family:'Bebas Neue';font-size:18px;color:var(--gold)">19</div>
+        <div style="font-size:7.5px;color:var(--t3)">DÍAS</div>
+      </div>
+    </div>
+    <!-- Rewards for next div -->
+    <div style="margin:0 11px 10px;background:linear-gradient(135deg,rgba(56,189,248,.06),rgba(167,139,250,.04));border:1px solid rgba(56,189,248,.18);border-radius:var(--r);padding:10px;">
+      <div style="font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--blue);margin-bottom:7px;">🎁 Recompensas al subir a Diamante Élite</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;">
+        <div style="background:rgba(255,184,0,.1);border:1px solid rgba(255,184,0,.2);border-radius:var(--rs);padding:5px 9px;font-size:9.5px;font-weight:700;color:var(--gold)">🪙 +2.000 MT</div>
+        <div style="background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.18);border-radius:var(--rs);padding:5px 9px;font-size:9.5px;font-weight:700;color:var(--green)">⚡ Boost exclusivo</div>
+        <div style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.2);border-radius:var(--rs);padding:5px 9px;font-size:9.5px;font-weight:700;color:var(--purple)">🎨 Marco élite</div>
+        <div style="background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.18);border-radius:var(--rs);padding:5px 9px;font-size:9.5px;font-weight:700;color:var(--blue)">💎 Título "Élite"</div>
+      </div>
+    </div>
   </div>
   <!-- Rankings list -->
   <div class="cf" style="margin:0 11px 8px;">
@@ -517,7 +627,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 </div>
 
 <!-- ══════════ BOOSTS ══════════ -->
-
 <div class="sc" id="sc-boosts">
   <div style="padding:10px 13px 0;"><div style="font-family:'Bebas Neue';font-size:21px;letter-spacing:1px;">⚡ Boosts</div><div style="font-size:9.5px;color:var(--t2);">Mejora tus inversiones con ventajas</div></div>
   <div class="shd">📅 Boosts Diarios</div>
@@ -542,7 +651,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 </div>
 
 <!-- ══════════ MISIONES ══════════ -->
-
 <div class="sc" id="sc-misiones">
   <div style="padding:10px 13px 0;"><div style="font-family:'Bebas Neue';font-size:21px;letter-spacing:1px;">🎯 Misiones</div><div style="font-size:9.5px;color:var(--t2);">3 / 10 completadas este mes</div></div>
   <div class="card">
@@ -566,7 +674,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 </div>
 
 <!-- ══════════ CALENDARIO ══════════ -->
-
 <div class="sc" id="sc-calendario">
   <div style="padding:10px 13px 6px;display:flex;align-items:center;justify-content:space-between;"><div><div style="font-family:'Bebas Neue';font-size:21px;letter-spacing:1px;">📅 Calendario</div><div style="font-size:9.5px;color:var(--t2);">6 eventos este mes</div></div></div>
   <div class="rsub-row" id="cal-filter">
@@ -611,7 +718,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 </div>
 
 <!-- ══════════ PRONOSTIKATOR ══════════ -->
-
 <div class="sc" id="sc-pronostikator">
   <div style="padding:10px 13px 0;"><div style="font-family:'Bebas Neue';font-size:21px;letter-spacing:1px;">🔮 Pronostikator</div><div style="font-size:9.5px;color:var(--t2);">Predice resultados · Cada pronóstico cuesta MT</div></div>
   <div class="pstats3">
@@ -632,7 +738,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 </div>
 
 <!-- ══════════ DESPACHO ══════════ -->
-
 <div class="sc" id="sc-despacho">
   <div style="padding:10px 13px 0;"><div style="font-family:'Bebas Neue';font-size:21px;letter-spacing:1px;">🖥️ Mi Despacho</div><div style="font-size:9.5px;color:var(--t2);">Personaliza tu oficina de inversiones</div></div>
   <div style="margin:8px 11px 4px;font-size:9px;color:var(--t2);">Toca una celda para colocar o quitar un objeto. Compra objetos en la Tienda.</div>
@@ -686,7 +791,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 </div>
 
 <!-- ══════════ SCOUT ══════════ -->
-
 <div class="sc" id="sc-scout">
   <div style="padding:10px 13px 0;"><div style="font-family:'Bebas Neue';font-size:21px;letter-spacing:1px;">🔭 Scout del Mes</div><div style="font-size:9.5px;color:var(--t2);">Propón el próximo deportista de la plataforma</div></div>
   <div class="scout-card">
@@ -714,7 +818,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 </div>
 
 <!-- ══════════ REGLAS ══════════ -->
-
 <div class="sc" id="sc-reglas">
   <div style="padding:10px 13px 6px;"><div style="font-family:'Bebas Neue';font-size:21px;letter-spacing:1px;">📋 Motor de Precios</div><div style="font-size:9.5px;color:var(--t2);">Cómo se mueven los valores en tiempo real</div></div>
   <div class="card" style="background:linear-gradient(135deg,rgba(0,230,118,.04),rgba(0,0,0,0));border-color:rgba(0,230,118,.15);">
@@ -775,7 +878,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 </div>
 
 <!-- ══════════ TIENDA ══════════ -->
-
 <div class="sc" id="sc-tienda">
   <div style="padding:10px 13px 6px;font-family:'Bebas Neue';font-size:21px;letter-spacing:1px;">🛍️ Tienda</div>
   <div class="shd">💰 Comprar MV</div>
@@ -800,7 +902,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 </div>
 
 <!-- ══════════ AJUSTES ══════════ -->
-
 <div class="sc" id="sc-ajustes">
   <div class="pw">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
@@ -840,6 +941,68 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
     <div class="srow"><div class="sl-l"><div class="sico" style="background:rgba(0,230,118,.09)">📊</div><div><div class="slbl">Mostrar MV en millones</div></div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
     <div class="srow"><div class="sl-l"><div class="sico" style="background:rgba(56,189,248,.09)">🔇</div><div><div class="slbl">Sonidos y vibraciones</div></div></div><div class="toggle on" onclick="this.classList.toggle('on')"></div></div>
   </div>
+  <!-- ─── MOTOR DE PRECIOS ─── -->
+  <div class="ss-title">⚙️ Motor de Precios</div>
+  <div style="margin:0 11px 8px;background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);overflow:hidden;">
+    <!-- Engine status -->
+    <div style="padding:10px 12px;border-bottom:1px solid var(--b1);display:flex;align-items:center;gap:9px;">
+      <div id="eng-dot" style="width:9px;height:9px;border-radius:50%;background:var(--green);animation:lpulse 1.5s infinite;flex-shrink:0;"></div>
+      <div style="flex:1"><div class="slbl">Motor en vivo</div><div class="ssub" id="eng-status-lbl">Activo · <span id="eng-ev-count">0</span> eventos generados</div></div>
+      <div class="toggle on" id="eng-toggle" onclick="toggleEngine(this)"></div>
+    </div>
+    <!-- Interval control -->
+    <div style="padding:10px 12px;border-bottom:1px solid var(--b1);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <div class="slbl">Intervalo entre eventos</div>
+        <div style="font-family:'JetBrains Mono';font-size:11px;font-weight:700;color:var(--gold)" id="eng-interval-lbl">15 seg</div>
+      </div>
+      <input type="range" id="eng-interval" min="5" max="60" step="5" value="15"
+        oninput="setEngineInterval(this.value)"
+        style="width:100%;height:3px;background:linear-gradient(to right,var(--gold) 28%,var(--b2) 28%);border-radius:2px;outline:none;-webkit-appearance:none;">
+      <div style="display:flex;justify-content:space-between;font-size:8px;color:var(--t3);margin-top:3px;"><span>5s (rápido)</span><span>60s (lento)</span></div>
+    </div>
+    <!-- Impact multiplier -->
+    <div style="padding:10px 12px;border-bottom:1px solid var(--b1);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
+        <div class="slbl">Multiplicador de impacto</div>
+        <div style="font-family:'JetBrains Mono';font-size:11px;font-weight:700;color:var(--purple)" id="eng-mult-lbl">×1.0</div>
+      </div>
+      <div style="display:flex;gap:5px;flex-wrap:wrap;">
+        <button class="sm smgh" id="mult-05" onclick="setMult(0.5,this)" style="font-size:8px;padding:3px 8px;">×0.5 Suave</button>
+        <button class="sm smgh" id="mult-10" onclick="setMult(1.0,this)" style="font-size:8px;padding:3px 8px;background:var(--purple);color:#000;border-color:var(--purple)">×1.0 Normal</button>
+        <button class="sm smgh" id="mult-15" onclick="setMult(1.5,this)" style="font-size:8px;padding:3px 8px;">×1.5 Volátil</button>
+        <button class="sm smgh" id="mult-30" onclick="setMult(3.0,this)" style="font-size:8px;padding:3px 8px;">×3.0 🔥 Chaos</button>
+      </div>
+    </div>
+    <!-- Sport weighting -->
+    <div style="padding:10px 12px;border-bottom:1px solid var(--b1);">
+      <div class="slbl" style="margin-bottom:6px;">Probabilidad por deporte</div>
+      <div id="sport-weight-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:9.5px;"></div>
+    </div>
+    <!-- Live log -->
+    <div style="padding:10px 12px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <div class="slbl">Log de eventos recientes</div>
+        <button class="sm smgh" onclick="clearEngineLog()" style="font-size:8px;padding:2px 7px;">Limpiar</button>
+      </div>
+      <div id="eng-log" style="max-height:130px;overflow-y:auto;font-size:9px;font-family:'JetBrains Mono';display:flex;flex-direction:column;gap:2px;">
+        <div style="color:var(--t3);text-align:center;padding:8px;">Sin eventos aún</div>
+      </div>
+    </div>
+  </div>
+  <!-- Stats panel -->
+  <div style="margin:0 11px 8px;background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);overflow:hidden;">
+    <div style="padding:9px 12px;border-bottom:1px solid var(--b1);font-size:8.5px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--t3);">📊 Estadísticas del Motor</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);">
+      <div style="padding:9px 6px;text-align:center;border-right:1px solid var(--b1)"><div style="font-family:'Bebas Neue';font-size:22px;color:var(--green)" id="eng-stat-total">0</div><div style="font-size:7.5px;text-transform:uppercase;color:var(--t3);margin-top:1px">Total eventos</div></div>
+      <div style="padding:9px 6px;text-align:center;border-right:1px solid var(--b1)"><div style="font-family:'Bebas Neue';font-size:22px;color:var(--gold)" id="eng-stat-ups">0</div><div style="font-size:7.5px;text-transform:uppercase;color:var(--t3);margin-top:1px">Subidas</div></div>
+      <div style="padding:9px 6px;text-align:center"><div style="font-family:'Bebas Neue';font-size:22px;color:var(--red)" id="eng-stat-dns">0</div><div style="font-size:7.5px;text-transform:uppercase;color:var(--t3);margin-top:1px">Bajadas</div></div>
+    </div>
+    <div style="padding:0 12px 10px;margin-top:4px;">
+      <div style="font-size:8px;color:var(--t3);margin-bottom:3px;font-weight:700;text-transform:uppercase;letter-spacing:.8px">Deportista más activo</div>
+      <div id="eng-hottest" style="font-size:11px;font-weight:700;color:var(--orange)">—</div>
+    </div>
+  </div>
   <div class="ss-title">Soporte & Legal</div>
   <div style="margin:0 11px 12px;background:var(--s1);border:1px solid var(--b1);border-radius:var(--r);overflow:hidden;">
     <div class="srow" onclick="showToast('Centro de Ayuda...')"><div class="sl-l"><div class="sico" style="background:rgba(80,120,140,.2)">❓</div><div><div class="slbl">Centro de Ayuda</div></div></div><div class="sr-r">›</div></div>
@@ -853,7 +1016,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 </div><!-- end content -->
 
 <!-- BOTTOM NAV -->
-
 <div class="bnav">
   <div class="ni on" id="ni-inicio" onclick="nav('inicio')"><span class="ico">🏠</span>Inicio</div>
   <div class="ni" id="ni-mercado" onclick="nav('mercado')"><span class="ico">📊</span>Mercado</div>
@@ -864,7 +1026,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 </div><!-- end shell -->
 
 <!-- MORE MENU -->
-
 <div id="more-menu">
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">
     <div onclick="nav('boosts');closeMore()" style="display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 4px;background:var(--s2);border:1px solid var(--b1);border-radius:9px;cursor:pointer;font-size:7.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--t2);"><span style="font-size:19px">⚡</span>Boosts</div>
@@ -880,7 +1041,6 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;heigh
 <div id="more-ov" onclick="closeMore()"></div>
 
 <!-- ATHLETE DETAIL MODAL -->
-
 <div class="mbg" id="modal-ath" onclick="if(event.target===this)closeModal()">
   <div class="msh">
     <div class="mh"></div>
@@ -1083,10 +1243,30 @@ function sportLabel(s){const m={futbol:'⚽',f1:'🏎️',motogp:'🏍️',tenis
 // MARKET RENDER
 // ═══════════════════════════════
 function buildMarket(){
+  const q=(document.getElementById('mkt-search')?.value||'').toLowerCase().trim();
+  const clearBtn=document.getElementById('mkt-search-clear');
+  if(clearBtn)clearBtn.style.display=q?'flex':'none';
   const keys=Object.keys(ATHLETES);
-  const filtered=mktFilter==='todos'?keys:keys.filter(k=>ATHLETES[k].sport===mktFilter);
+  let filtered=mktFilter==='todos'?keys:keys.filter(k=>ATHLETES[k].sport===mktFilter);
+  // text search
+  if(q)filtered=filtered.filter(k=>{const a=ATHLETES[k];return a.name.toLowerCase().includes(q)||a.team.toLowerCase().includes(q)||a.sport.toLowerCase().includes(q);});
+  // trend filter
+  if(mktFtrTrend==='up')filtered=filtered.filter(k=>getRg(k)>=0);
+  else if(mktFtrTrend==='dn')filtered=filtered.filter(k=>getRg(k)<0);
+  // vol filter
+  if(mktFtrVol!=='all')filtered=filtered.filter(k=>ATHLETES[k].vol===mktFtrVol);
+  // price filter
+  if(mktFtrPrice==='low')filtered=filtered.filter(k=>ATHLETES[k].price<500000);
+  else if(mktFtrPrice==='mid')filtered=filtered.filter(k=>ATHLETES[k].price>=500000&&ATHLETES[k].price<=2000000);
+  else if(mktFtrPrice==='high')filtered=filtered.filter(k=>ATHLETES[k].price>2000000);
+  else if(mktFtrPrice==='port')filtered=filtered.filter(k=>!!portfolio[k]);
   const sorted=[...filtered].sort((a,b)=>sortByRg?getRg(b)-getRg(a):ATHLETES[b].price-ATHLETES[a].price);
   const list=document.getElementById('mkt-list');
+  if(sorted.length===0){
+    list.innerHTML=`<div style="padding:24px;text-align:center;color:var(--t3)"><div style="font-size:28px;margin-bottom:8px;">🔍</div><div style="font-size:12px;font-weight:700;margin-bottom:4px;">Sin resultados</div><div style="font-size:10px;">Prueba otra búsqueda o cambia los filtros</div><button class="sm smgh" onclick="resetFilters()" style="margin-top:10px;font-size:9px">Limpiar filtros</button></div>`;
+    document.getElementById('mkt-sub').textContent='0 resultados';
+    return;
+  }
   list.innerHTML=sorted.map(k=>{
     const a=ATHLETES[k];const rg=getRg(k);
     const rc=rg>=0?'var(--green)':'var(--red)';
@@ -1101,7 +1281,7 @@ function buildMarket(){
       </div>
     </div><div class="divL"></div>`;
   }).join('');
-  document.getElementById('mkt-sub').textContent=filtered.length+' deportistas · tiempo real';
+  document.getElementById('mkt-sub').textContent=sorted.length+' de '+Object.keys(ATHLETES).length+' deportistas';
 }
 
 // Inicio list (same as market but showing trending)
@@ -1201,15 +1381,17 @@ function buildTicker(){
 // EVENT ENGINE
 // ═══════════════════════════════
 function fireEvent(){
+  if(!engineRunning)return;
   const keys=Object.keys(ATHLETES);
   const k=keys[Math.floor(Math.random()*keys.length)];
   const a=ATHLETES[k];
   const pool=EVENT_TYPES[a.sport]||EVENT_TYPES.futbol;
   const ev=pool[Math.floor(Math.random()*pool.length)];
   const old=a.price;
-  a.price=Math.max(1000,old*(1+ev.pct/100));
+  const effectivePct=ev.pct*engineMult;
+  a.price=Math.max(1000,old*(1+effectivePct/100));
   a.history.push(a.price);if(a.history.length>40)a.history.shift();
-  const evData={time:fmtTime(),key:k,name:a.name,em:a.em,sport:a.sport,ev,old,newP:a.price,pct:ev.pct,up:ev.up};
+  const evData={time:fmtTime(),key:k,name:a.name,em:a.em,sport:a.sport,ev,old,newP:a.price,pct:effectivePct,up:ev.up};
   a.events.unshift(evData);if(a.events.length>20)a.events.pop();
   evTotal++;
   portHistory.push(calcPortRg());if(portHistory.length>50)portHistory.shift();
@@ -1219,6 +1401,8 @@ function fireEvent(){
   updateHomeEvStrip(evData);
   buildTicker();
   updatePortfolioPrices();
+  addEngineLog(evData);
+  updateDivisionProgress();
   if(currentModalKey===k)refreshModal(k);
 }
 function updatePriceRow(k,up){
@@ -1358,12 +1542,212 @@ function showToast(msg,dur){
 // ═══════════════════════════════
 // COUNTDOWN + EVENT SCHEDULER
 // ═══════════════════════════════
+let engineRunning=true, engineInterval=15, engineMult=1.0;
+let engStats={total:0,ups:0,dns:0,activity:{}};
+let engineLogEntries=[];
+
 function startEngine(){
   setInterval(()=>{
+    if(!engineRunning)return;
     nextEvCD--;
     const el=document.getElementById('ev-timer');if(el)el.textContent=nextEvCD+'s';
-    if(nextEvCD<=0){nextEvCD=15;fireEvent();}
+    if(nextEvCD<=0){nextEvCD=engineInterval;fireEvent();}
   },1000);
+}
+function toggleEngine(toggle){
+  engineRunning=toggle.classList.contains('on');
+  const dot=document.getElementById('eng-dot');
+  const lbl=document.getElementById('eng-status-lbl');
+  if(engineRunning){
+    dot.style.background='var(--green)';dot.style.animation='lpulse 1.5s infinite';
+    if(lbl)lbl.innerHTML='Activo · <span id="eng-ev-count">'+engStats.total+'</span> eventos generados';
+  } else {
+    dot.style.background='var(--t3)';dot.style.animation='none';
+    if(lbl)lbl.innerHTML='Pausado · <span id="eng-ev-count">'+engStats.total+'</span> eventos generados';
+  }
+  showToast(engineRunning?'▶️ Motor activado':'⏸️ Motor pausado');
+}
+function setEngineInterval(v){
+  engineInterval=parseInt(v);nextEvCD=engineInterval;
+  document.getElementById('eng-interval-lbl').textContent=v+' seg';
+  const pct=(v-5)/(60-5)*100;
+  document.getElementById('eng-interval').style.background=`linear-gradient(to right,var(--gold) ${pct}%,var(--b2) ${pct}%)`;
+  showToast('Intervalo: '+v+'s');
+}
+function setMult(m,btn){
+  engineMult=m;
+  document.getElementById('eng-mult-lbl').textContent='×'+m.toFixed(1);
+  document.querySelectorAll('[id^="mult-"]').forEach(b=>{b.style.background='';b.style.color='';b.style.borderColor='';});
+  btn.style.background='var(--purple)';btn.style.color='#000';btn.style.borderColor='var(--purple)';
+  showToast('Multiplicador ×'+m+' activado');
+}
+function clearEngineLog(){
+  engineLogEntries=[];
+  const el=document.getElementById('eng-log');
+  if(el)el.innerHTML='<div style="color:var(--t3);text-align:center;padding:8px;">Log limpiado</div>';
+}
+function addEngineLog(evData){
+  const c=evData.up?'up':'dn';const arrow=evData.up?'▲':'▼';
+  engineLogEntries.unshift({text:`${evData.em} ${evData.name} ${arrow}${Math.abs(evData.pct)}%`,up:evData.up,time:evData.time});
+  if(engineLogEntries.length>30)engineLogEntries.pop();
+  const el=document.getElementById('eng-log');
+  if(!el)return;
+  el.innerHTML=engineLogEntries.map(e=>`<div class="eng-entry ${e.up?'up':'dn'}">${e.up?'▲':'▼'} <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${e.text}</span><span style="color:var(--t3);font-size:8px;flex-shrink:0">${e.time}</span></div>`).join('');
+  // stats
+  engStats.total++;if(evData.up)engStats.ups++;else engStats.dns++;
+  engStats.activity[evData.key]=(engStats.activity[evData.key]||0)+1;
+  const ec=document.getElementById('eng-ev-count');if(ec)ec.textContent=engStats.total;
+  const st=document.getElementById('eng-stat-total');if(st)st.textContent=engStats.total;
+  const su=document.getElementById('eng-stat-ups');if(su)su.textContent=engStats.ups;
+  const sd=document.getElementById('eng-stat-dns');if(sd)sd.textContent=engStats.dns;
+  // hottest athlete
+  const hk=Object.keys(engStats.activity).sort((a,b)=>engStats.activity[b]-engStats.activity[a])[0];
+  const hEl=document.getElementById('eng-hottest');
+  if(hEl&&hk&&ATHLETES[hk])hEl.textContent=ATHLETES[hk].em+' '+ATHLETES[hk].name+' ('+engStats.activity[hk]+' eventos)';
+}
+function buildSportWeightGrid(){
+  const sports={futbol:'⚽',f1:'🏎️',motogp:'🏍️',tenis:'🎾',ufc:'🥊',nba:'🏀',golf:'⛳',ciclismo:'🚴',padel:'🎽'};
+  const el=document.getElementById('sport-weight-grid');if(!el)return;
+  el.innerHTML=Object.entries(sports).map(([k,em])=>{
+    const count=Object.keys(ATHLETES).filter(ak=>ATHLETES[ak].sport===k).length;
+    return`<div style="display:flex;align-items:center;gap:5px;padding:3px 5px;background:var(--s2);border-radius:var(--rx);border:1px solid var(--b1);">
+      <span>${em}</span>
+      <span style="flex:1;font-size:8.5px;color:var(--t2);text-transform:capitalize">${k}</span>
+      <span class="mono" style="font-size:8.5px;color:var(--gold);font-weight:700">${count} ath.</span>
+    </div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════
+// DIVISION SYSTEM (Clash Royale)
+// ═══════════════════════════════
+const DIVISIONS=[
+  {id:'bronce',name:'Bronce',icon:'🥉',color:'#CD7F32',req:0,top:null,rewards:'500 MT + Avatar Bronce'},
+  {id:'plata',name:'Plata',icon:'🥈',color:'#C0C8D8',req:3,top:null,rewards:'800 MT + Marco Plata'},
+  {id:'oro',name:'Oro',icon:'🥇',color:'#FFB800',req:8,top:5000,rewards:'1.200 MT + Boost Oro'},
+  {id:'platino',name:'Platino',icon:'🎖️',color:'#E5E4E2',req:15,top:2000,rewards:'1.800 MT + Título Platino'},
+  {id:'diamante',name:'Diamante',icon:'💎',color:'#38BDF8',req:30,top:100,rewards:'2.500 MT + Boost x2 Exclusivo'},
+  {id:'diamante-elite',name:'Diamante Élite',icon:'💠',color:'#A78BFA',req:60,top:10,rewards:'4.000 MT + Skin Élite + Boost ×3'},
+  {id:'hall',name:'Hall of Fame',icon:'🌟',color:'#FF9F0A',req:80,top:3,rewards:'10.000 MT + Trophy Permanente'},
+];
+const USER_DIV_IDX=4; // Currently Diamante (index 4)
+
+function buildDivisionLadder(){
+  const el=document.getElementById('div-full-ladder');if(!el)return;
+  const rg=calcPortRg();
+  el.innerHTML=DIVISIONS.slice().reverse().map((div,ri)=>{
+    const idx=DIVISIONS.length-1-ri;
+    const isCurrent=idx===USER_DIV_IDX;
+    const isDone=idx<USER_DIV_IDX;
+    const isLocked=idx>USER_DIV_IDX;
+    const nextDiv=DIVISIONS[idx+1];
+    const progress=isCurrent?Math.min((rg/nextDiv?.req||0)*100,100):isDone?100:0;
+    let cls='fl-row'+(isCurrent?' fl-current':isDone?' fl-done':' fl-locked');
+    const barColor=div.color;
+    return`<div class="${cls}" onclick="${isCurrent?'showToast(\'💎 División actual · Sigue subiendo!\')':isDone?'showToast(\'✓ División ya completada\')':'showToast(\'🔒 Consigue más RG% para desbloquear\')'}">
+      <div class="fl-ico" style="background:${isCurrent?`linear-gradient(135deg,${div.color}22,rgba(0,0,0,0))`:isDone?'rgba(0,230,118,.08)':'rgba(0,0,0,.2)'};border:1px solid ${isCurrent?div.color:isDone?'rgba(0,230,118,.2)':'var(--b1)'};">${div.icon}</div>
+      <div style="flex:1;min-width:0;">
+        <div style="display:flex;align-items:center;gap:5px;margin-bottom:2px;">
+          <div style="font-weight:700;font-size:11px;color:${isCurrent?div.color:isDone?'var(--t1)':'var(--t3)'}">${div.name}</div>
+          ${isCurrent?'<span class="tag tg" style="font-size:7px">TÚ</span>':''}
+          ${isDone?'<span style="font-size:9px">✓</span>':''}
+        </div>
+        <div style="font-size:8.5px;color:var(--t3)">RG ≥ +${div.req}%${div.top?` · Top ${div.top.toLocaleString()}`:''}</div>
+        ${isCurrent?`<div style="margin-top:4px;height:4px;background:var(--b1);border-radius:2px;overflow:hidden;"><div style="width:${progress.toFixed(0)}%;height:100%;background:${barColor};border-radius:2px;transition:width 1s;box-shadow:0 0 5px ${barColor}44;"></div></div>`:
+         isDone?`<div style="margin-top:4px;height:4px;background:rgba(0,230,118,.15);border-radius:2px;overflow:hidden;"><div style="width:100%;height:100%;background:var(--green);border-radius:2px;"></div></div>`:''}
+      </div>
+      <div style="text-align:right;flex-shrink:0;">
+        ${isCurrent?`<div class="mono" style="font-size:9px;color:${barColor};font-weight:700">${rg.toFixed(1)}/${nextDiv?.req||'?'}%</div>`:''}
+        ${isDone?'<span style="font-size:14px">✅</span>':''}
+        ${isLocked?`<div class="mono" style="font-size:9px;color:var(--t3)">+${div.req}%</div>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+function updateDivisionProgress(){
+  const rg=calcPortRg();
+  const nextDiv=DIVISIONS[USER_DIV_IDX+1];
+  const req=nextDiv?.req||60;
+  const pct=Math.min((rg/req)*100,100);
+  const bar=document.getElementById('div-prog-bar');
+  const lbl=document.getElementById('div-prog-lbl');
+  const rgEl=document.getElementById('div-rg-live');
+  if(bar)bar.style.width=pct.toFixed(1)+'%';
+  if(lbl)lbl.textContent=rg.toFixed(1)+'% / '+req+'%';
+  if(rgEl)rgEl.textContent=fmtPct(rg);
+  // milestones
+  const milestones=[10,20,30,40,50,60];
+  document.querySelectorAll('.div-ms').forEach((el,i)=>{
+    const threshold=milestones[i]||60;
+    el.classList.toggle('done',rg>=threshold);
+  });
+  buildDivisionLadder();
+}
+function toggleDivLadder(){
+  const el=document.getElementById('div-ladder');
+  const isOpen=el.style.display!=='none';
+  el.style.display=isOpen?'none':'block';
+  if(!isOpen){updateDivisionProgress();}
+}
+
+// ═══════════════════════════════
+// MARKET SEARCH + FILTERS
+// ═══════════════════════════════
+let mktFtrTrend='all', mktFtrVol='all', mktFtrPrice='all';
+function toggleMktFilters(){
+  const p=document.getElementById('mkt-filter-panel');
+  p.style.display=p.style.display==='none'?'block':'none';
+  document.getElementById('btn-filters').style.background=
+    p.style.display!=='none'?'var(--green)':'';
+  document.getElementById('btn-filters').style.color=
+    p.style.display!=='none'?'#000':'';
+}
+function setFtrTrend(v,btn){
+  mktFtrTrend=v;
+  document.querySelectorAll('[id^="ftr-"]').forEach(b=>{b.style.background='';b.style.color='';b.style.borderColor='';});
+  btn.style.background='var(--green)';btn.style.color='#000';btn.style.borderColor='var(--green)';
+  buildMarket();updateFtrLbl();
+}
+function setFtrVol(v,btn){
+  mktFtrVol=v;
+  document.querySelectorAll('[id^="fvol-"]').forEach(b=>{b.style.background='';b.style.color='';b.style.borderColor='';});
+  btn.style.background='var(--green)';btn.style.color='#000';btn.style.borderColor='var(--green)';
+  buildMarket();updateFtrLbl();
+}
+function setFtrPrice(v,btn){
+  mktFtrPrice=v;
+  document.querySelectorAll('[id^="fpr-"]').forEach(b=>{b.style.background='';b.style.color='';b.style.borderColor='';});
+  btn.style.background='var(--green)';btn.style.color='#000';btn.style.borderColor='var(--green)';
+  buildMarket();updateFtrLbl();
+}
+function resetFilters(){
+  mktFtrTrend='all';mktFtrVol='all';mktFtrPrice='all';
+  document.getElementById('mkt-search').value='';
+  document.getElementById('mkt-search-clear').style.display='none';
+  ['ftr-all','fvol-all','fpr-all'].forEach(id=>{
+    const b=document.getElementById(id);if(!b)return;
+    b.style.background='var(--green)';b.style.color='#000';b.style.borderColor='var(--green)';
+  });
+  ['ftr-up','ftr-dn','fvol-Alta','fvol-Media','fvol-Baja','fpr-low','fpr-mid','fpr-high','fpr-port'].forEach(id=>{
+    const b=document.getElementById(id);if(!b)return;
+    b.style.background='';b.style.color='';b.style.borderColor='';
+  });
+  buildMarket();updateFtrLbl();showToast('Filtros limpiados');
+}
+function updateFtrLbl(){
+  const parts=[];
+  if(mktFtrTrend!=='all')parts.push(mktFtrTrend==='up'?'📈 Subiendo':'📉 Bajando');
+  if(mktFtrVol!=='all')parts.push('Vol '+mktFtrVol);
+  if(mktFtrPrice!=='all')parts.push('Precio: '+mktFtrPrice);
+  const q=document.getElementById('mkt-search')?.value||'';
+  if(q)parts.push('Búsqueda: "'+q+'"');
+  const el=document.getElementById('ftr-active-lbl');
+  if(el)el.textContent=parts.length?parts.join(' · '):'Sin filtros activos';
+}
+function clearMktSearch(){
+  document.getElementById('mkt-search').value='';
+  document.getElementById('mkt-search-clear').style.display='none';
+  buildMarket();updateFtrLbl();
 }
 
 // ═══════════════════════════════
@@ -1374,6 +1758,8 @@ function init(){
   buildInicio();
   buildTicker();
   buildPortfolio();
+  buildSportWeightGrid();
+  buildDivisionLadder();
   startEngine();
   // Fire 3 quick events on start
   setTimeout(fireEvent,1200);
@@ -1382,6 +1768,5 @@ function init(){
 }
 init();
 </script>
-
 </body>
 </html>
